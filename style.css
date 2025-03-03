@@ -1,0 +1,766 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --background-color: #f9f9f9;
+}
+/* Tổng quan */
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    background-size: 100%;
+}
+
+#title {
+    color: #1282A2;
+    font-family: Lato;
+    padding-top: 2rem;
+    margin: 1rem;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-align: center;
+    height: fit-content;
+    background-color: #ffff;
+}
+
+.Navigator {
+    width: 15%;
+    background-color: #ffff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.list-group a {
+    display: flex; /* Căn ngang icon và text */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Điều chỉnh khoảng cách giữa icon và text */
+    font-family: Lato;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #034078;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.list-group a i {
+    font-size: 1.5rem; /* Điều chỉnh kích thước icon nếu cần */
+}
+
+.list-group a:hover:not(.active) {
+    background-color: #001F54;
+    color: #FEFCFB;
+}
+
+.Main {
+    margin-left: 15%; /* Dịch sang phải theo độ rộng của Navigator */
+    padding-left:2rem;
+    padding-right:2rem;
+    height: 100vh;
+    overflow: auto;
+}
+
+.welcome {
+    height: 4rem;
+    padding-top: 2rem;
+    display: flex; /* Sử dụng Flexbox để căn ngang */
+    justify-content: space-between; /* Đẩy .hello sang trái, .user-info sang phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.hello {
+    width: auto;
+    font-family: Lato;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #034078;
+    float: left;
+}
+
+.hello-user {
+    float: right;
+    padding-left: 0.4rem;
+}
+
+.Noti {
+    color: #034078
+}
+
+.Setting {
+    color: #034078;
+}
+
+.user-info {
+    display: flex; /* Sắp xếp các phần tử con theo hàng ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 1rem; /* Khoảng cách giữa các phần tử con */
+}
+
+.name {
+    flex-direction: column; /* Xếp doctor-name và doctor-position theo cột */
+    text-align: left; /* Canh chữ về bên phải */
+}
+
+.alarm {
+    float: left;
+    font-size: 2rem;
+    color: #034078;
+}
+
+.personal {
+    width: 3.5rem;
+    float: left;
+    color: #034078;
+}
+.alarm, .personal{
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Khoảng cách nhỏ giữa các icon/text trong từng nhóm */
+}
+
+.doctor-name {
+    color: #001F54;
+    font-size: 1.5rem;
+    font-family: Lato;
+    font-weight: 900;
+}
+
+.doctor-position {
+    font-size: 1.2rem;
+    color: #034078;
+    font-family: Lato;
+    font-weight: 500;
+}
+
+.bi-person-circle {
+    font-size: 3.5rem;
+}
+
+.main-part {
+    width: 100%;
+    height: 90%;
+    padding-top: 20px;
+}
+
+.statistical {
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Chia đều các phần tử */
+    gap: 2rem; /* Khoảng cách giữa các phần */
+}
+
+.statistical.part {
+    color: #FEFCFB;
+    border-radius: 12px;
+    height: 100%;
+    padding-left: 3rem;
+    float: left;
+}
+
+    .statistical.part.one {
+        background-color: #118AB2;
+    }
+
+    .statistical.part.two {
+        background-color: #EF476F;
+    }
+
+    .statistical.part.three {
+        background-color: #FB8500
+    }
+
+.fa-bed-pulse {
+    font-size: 3rem;
+}
+
+.fa-hospital-user {
+    font-size: 3rem;
+}
+
+.fa-user-doctor {
+    font-size: 3rem;
+}
+
+.Iconly {
+    display: flex;
+    align-items: center; /* Căn icon và text theo chiều dọc */
+    gap: 1rem; /* Khoảng cách giữa icon và text */
+}
+
+.wrap-sreach
+{
+    display: flex;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+}
+.icon {
+    display: flex;
+    flex-direction: column; /* Xếp số và text theo chiều dọc */
+    align-items: center; /* Căn giữa nội dung */
+    width: fit-content;
+    float: left;
+}
+
+#title-number {
+    box-sizing: border-box;
+    font-family: Lato;
+    float: left;
+    width: fit-content;
+    font-size: 1rem;
+}
+
+#number {
+    font-family: Lato;
+    font-size: 1.7rem;
+}
+
+.statis {
+    font-family: Lato;
+    font-weight: 750;
+    font-size: 1.3rem;
+    color: #034078;
+    width: 30%;
+    float: left;
+    padding-top: 1.5rem;
+}
+
+input#finace {
+    float: right;
+    display: inline;
+    font-size: 0.8rem;
+    padding: 4px;
+}
+
+input#patient {
+    float: inline-end;
+    display: inline;
+    font-size: 0.8rem;
+    padding: 4px;
+}
+
+p {
+    width: fit-content;
+    float: left;
+    font-size: 1.8rem;
+}
+
+.doctor.dropbox {
+    width: fit-content;
+    float: inline-end;
+}
+
+.dropbox.upcoming {
+    width: fit-content;
+    float: inline-end;
+}
+
+.view.all {
+    font-size: 1.2rem;
+    color: #001F54;
+    text-decoration: none;
+}
+
+    .view.all:hover {
+        color: #007ff6;
+    }
+
+.upcoming.statis {
+    height: fit-content;
+}
+
+.upcoming-table {
+    width: 100%;
+    height: 30rem;
+    padding-top: 0.5rem;
+    color: black;
+    border-width: 0.125rem;
+    border-style: solid;
+    background-color: #ffff;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+}
+
+.table-up-name {
+    padding-top: 0.7rem;
+    padding-left: 1.0rem;
+    width: 50%;
+    font-size: 1.15rem;
+}
+
+.table-down-name {
+    padding-left: 1rem;
+    width: 50%;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.table-side-name {
+    padding-top: 1rem;
+    padding-right: 1rem;
+    float: inline-end;
+    font-size: 1.1rem;
+}
+
+
+.patient-chart {
+    margin-top: 1rem;
+}
+
+.finace-statis {
+    width: 100%;
+    height: auto;
+    border-width: 0.125rem;
+    border-style: solid;
+    background-color: #ffff;
+    border-radius: 12px;
+    display: flex; /* Sử dụng flexbox để căn giữa */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;
+}
+
+.mypiechart {
+    height: 14rem;
+    width: 14rem;
+    margin: 1rem 1rem 1rem 1rem;
+}
+
+.patient-statis {
+    width: 100%;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    height: auto;
+    border-width: 0.125rem;
+    border-style: solid;
+    background-color: #ffff;
+    border-radius: 12px;
+}
+
+.mydonutchart {
+    height: 17rem;
+    width: 17rem;
+    margin: 1rem 1rem 1rem 1rem;
+}
+/* lịch phẫu thuật */
+.surgery-schedule {
+    margin-top: 2.5rem;
+}
+
+.surgery-major {
+    width: 100%;
+    padding-bottom: 1rem;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.surgery-button {
+    float: left;
+}
+
+.surgery-title {
+    font-weight: 900;
+    width: 82rem;
+    float: left;
+    font-family: Lato;
+    font-size: 2rem;
+    color: #034078;
+}
+
+.dropbtn {
+    background-color: #001F54;
+    color: white;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-family: lato;
+    border: none;
+    border-radius: 12px;
+    width: 12rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropbtn-icon {
+    width: fit-content;
+    float: inline-end;
+    font-size: 1.7rem;
+    margin-left: 0.7rem;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 13rem;
+    font-family: lato;
+    font-size: 1rem;
+    border-radius: 12px;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            border-radius: 12px;
+            background-color: rgba(17,138,178,0.2);
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #118AB2;
+}
+
+.searchingpatient:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
+}
+/* Style for search input */
+#searchInput {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 16rem;
+    border-radius: 8px;
+    color: #001F54;
+    font-family: Lato;
+    font-size: 16PX;
+    border-width: 1px;
+}
+/* Style for table */
+#surgery-table {
+    border-collapse: collapse;
+    width: 90%;
+}
+/* Style for table headers */
+th {
+    background-color: #1282A2;
+    color: #FEFCFB;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+td#delete {
+    border: 1px solid #001F54;
+    padding: 4px;
+    text-align: left;
+}
+
+#delete {
+    border-width: 0px;
+    font-size: 1rem;
+}
+
+#delete:hover {
+    color: #EF476F;
+}
+
+td#detail {
+    border: 1px solid #001F54;
+    padding: 4px;
+    text-align: left;
+}
+
+#detail {
+    align-items: center;
+    border-width: 0px;
+    font-size: 1rem;
+}
+#detail:hover {
+    color: #EF476F;
+}
+.fa-solid.fa-circle-info:hover{
+    transform: scale(1.1);
+}
+.fa-solid.fa-trash:hover {
+    transform: scale(1.1);
+}
+ /* Style for table cells */
+
+td#facility, th {
+    overflow-y: auto;
+    border: 1px solid #001F54;
+    padding: 0.5rem;
+    text-align: left;
+    font-family: lato;
+    font-size: 1.1rem;
+    text-transform: uppercase
+}
+
+td#tinhtrangphong {
+    overflow-y: auto;
+    border: 1px solid #001F54;
+    padding: 0.5rem;
+    text-align: left;
+    font-family: lato;
+    font-size: 1.1rem;
+}
+
+/* Thêm thiết bị*/
+
+.surgery-major-title {
+    display: inline;
+    font-family: lato;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    font-weight: 800;
+    color: #001F54;
+}
+
+.surgery-submit-form {
+    height: fit-content;
+    width: fit-content;
+}
+
+.fa-solid.fa-chevron-right {
+    padding-right: 0.5rem;
+}
+
+label {
+    background-color: #001F54;
+    font-family: Lato;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #f1f1f1;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+.form-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 15px;
+}
+input, textarea {
+    font-family: Lato;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    border-radius: 8px;
+    border-width: 1px;
+    width: auto;
+}
+select {
+    font-family: Lato;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    border-radius: 8px;
+    border-width: 1px;
+    width: auto;
+}
+/* Chi tiết các ô input */
+
+#patient-name {
+    width: 30rem;
+}
+
+.surgery-form.linked {
+    width: 44rem;
+}
+
+.surgery-form.maindoctor {
+    width: 100%;
+}
+
+#maindoctor-name {
+    width: 33rem;
+}
+
+.surgery-form.roomtype {
+    width: 19.5rem;
+}
+
+.surgery-form.roomcode {
+    width: 30rem;
+}
+
+#medicalrecordLink {
+    width: 20rem;
+}
+
+.fa-solid.fa-paperclip {
+    font-size: 1.5rem;
+    color: #EF476F
+}
+/* nút lưu tìm kiếm làm lại */
+.submit-button {
+    width: fit-content;
+    display: inline;
+}
+
+.submit-button {
+    color: white;
+    background-color: #001F54;
+    font-size: 1.5rem;
+    font-family: Lato;
+    font-weight: 800;
+    border-radius: 8px;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 0.7rem 2.5rem 0.5rem 2.5rem;
+}
+
+    .submit-button:hover {
+        background-color: #118AB2;
+        transform: scale(1.05);
+    }
+
+
+.reset-button {
+    margin-left: 2rem;
+    display: inline;
+    width: fit-content;
+}
+
+#reset-button {
+    color: #034078;
+    background-color: #f8f6f6;
+    font-size: 1.5rem;
+    font-family: Lato;
+    font-weight: 800;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #034078;
+    padding: 0.7rem 1.5rem 0.5rem 1.5rem;
+}
+
+    #reset-button:hover {
+        background-color: rgb(255, 255, 255);
+        color: #007ff6;
+    }
+
+.finding-button {
+    width: fit-content;
+    display: inline;
+}
+
+#finding-button {
+    color: white;
+    background-color: #034078;
+    font-size: 1.5rem;
+    font-family: Lato;
+    font-weight: 800;
+    border-radius: 8px;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 0.7rem 2.5rem 0.5rem 2.5rem;
+}
+
+    #finding-button:hover {
+        background-color: #0069cb;
+    }
+/* Bệnh án */
+
+.row {
+    width: 100%;
+    float: left;
+    height: fit-content;
+}
+
+.medicalrecord.patient-dateofbirth {
+    float: left;
+    margin-top: 1.5rem;
+    width: 25rem;
+}
+
+.medicalrecord.patient-sex {
+    float: left;
+    ;
+    margin-top: 1.5rem;
+    width: 15rem;
+}
+
+.medicalrecord.patient-ID {
+    width: 25rem;
+    margin-top: 1.5rem;
+}
+
+.medicalrecord.patient-ID {
+    width: fit-content;
+    margin-top: 1.5rem;
+    float: left;
+    display: inline;
+    margin-left: 1rem;
+}
+
+.medicalrecord.patient-number {
+    margin-top: 1.5rem;
+    width: fit-content;
+    float: left;
+    display: inline;
+}
+
+input.patient-address {
+    width: 43rem;
+}
+
+.medicalrecord.symptom {
+    margin-top: 1.5rem;
+    float: left;
+    width: fit-content;
+}
+
+.medicalrecord.disease {
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    float: left;
+    width: fit-content;
+}
+
+.medicalrecord-filling-form.p2 {
+    height: 22rem;
+}
+
+.medicalrecord-filling-form.p1 {
+    height: 29rem;
+}
+
+.submit-reset-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medicalrecord.timein {
+    margin-top: 1.5rem;
+}
+
+.medicalrecord.timeout {
+    margin-top: 1.5rem;
+}
+
+.medicalrecord.hospitalfee {
+    margin-top: 1.5rem;
+}
+/* nhân viên thêm */
+.medicalrecord-filling-form.p3 {
+    height: 25rem;
+}
+
+.staff.salary {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.roomstatus {
+    height: 5rem;
+    width: 100%;
+}   

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!--phần đầu-->
+<head>
+    <title>Thietbi</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2f8895050a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        .list-group.item2 {
+            background-color: #001F54;
+            color: #FEFCFB !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="Navigator">
+        <div id="title">
+            HỆ THỐNG QUẢN LÝ VẬT TƯ Y TẾ
+        </div>
+        <div class="list-group">
+            <a class="list-group item1" href="Trangchu.html">
+                <i class="fa-solid fa-chart-simple"></i>
+                Tổng quan
+            </a>
+            <a class="list-group item2" href="Thietbi.html">
+                <i class="fa-solid fa-bed"></i>
+                Thiết bị
+            </a>
+            <a class="list-group item3" asp-action="Patient">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Bảo trì - sửa chữa
+            </a>
+            <a class="list-group item4" asp-action="Staff">
+                <i class="fa-solid fa-warehouse"></i>
+                Kho - chuyển thiết bị
+            </a>
+            <a class="list-group item5" asp-action="Room">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Tài chính - Hợp đồng
+            </a>
+            <a class="list-group item6">
+                <i class="fa-solid fa-rectangle-list"></i>
+                Phụ lục - Tra cứu mã
+            </a>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="surgery-schedule">  
+            <div class="surgery-major">
+                <div class="surgery-title">
+                    THIẾT BỊ
+                </div>
+                <div class="surgery-major-button">
+                    <!-- nghiệp vụ -->
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            NGHIỆP VỤ
+                            <div class="dropbtn-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="Thietbi-them.html">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                Thêm Thiết bị
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="surgery-table">
+                <table id="surgery-table">
+                    <div class="wrap-sreach">
+                                <input name="searchString" class="search" style="width: 21rem;" type="text" placeholder="Điền thông tin">
+                                <select name="searchField" style="width: 13rem; padding: 0.5rem;" id="searchField">
+                                    <option value="giuong-benh">Giường bệnh</option>
+                                    <option value="may-moc">Máy móc</option>
+                                    <option value="tu">Tủ</option>
+                                    <option value="thuoc">Thuốc</option>
+                                </select>
+                                <button class="searchingpatient" style="color: white;border: 1px #001F54 solid;font-size: 1.1rem; font-family: lato; padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 8px;" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    Tìm Kiếm
+                                </button>
+                    </div>
+                    <table id="dataTable">
+                        <thead>
+                                    <tr>
+                                        <th>Tên thiết bị</th>
+                                        <th>Vị trí hiện tại</th>
+                                        <th>Ngày nhập kho</th>
+                                        <th>Ngày xuất kho</th>
+                                        <th>Loại</th>
+                                        <th>Chi tiết</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="facility"> Máy thở Philip </td>
+                                <td id="facility"> Khoa Hồi sức tích cực </td>
+                                <td id="facility"> 12/3/2024</td>
+                                <td id="facility"> 2/3/2025 </td >
+                                <td id="facility"> VENT-DT-ICU-2024-ACT </td>
+                                <td id="detail">
+                                    <button id="detail">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </button>
+                                </td>
+                                <td id="delete">
+                                    <button type="button" id="delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </table>
+                <!--@if (Model.PageCount >= 0)
+                        {
+                            foreach (var item in Model.Items)
+                            {
+                                <div style="margin-top: 0.7rem; display: none; min-width: 40%; height: 30%; left: 30%; top: 30%; z-index: 1;" class="form-frame delete-form" id="@item.Patient_ID">
+                                    <a style="text-align: center; color: #034078; font-family: Lato;font-size: 1.2rem;"> Bạn có chắc chắn muốn xóa bệnh án có số hiệu là @item.Patient_ID không? </a>
+                                    <div style="margin-top: 0.7rem;">
+                                        <button class="form-submit" hover="background-color: #0069cb" style="color: white;border: 1px #001F54 solid;font-size: 1.1rem;font-family: lato;padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 4px; " onclick="location.href='@Url.Action("DeletePatient", new{ patient_id = @item.Patient_ID})'" value="Có">Có</button>
+                                        <button class="form-submit" hover="background-color: #0069cb" onclick="confirm_delete_disabled()" style="margin-left: 1rem; color: white;border: 1px #001F54 solid;font-size: 1.1rem;font-family: lato;padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 4px;">Không</button>
+                                    </div>
+                                </div> 
+                            }
+                        } -->
+            </div>
+        </div>
+        <!--<script>
+            function confirm_detele(id) {
+                Id = "" + id;
+                var subScene = document.getElementsByClassName("delete-form");
+                for (let i = 0; i < @Model.ItemCount; i++) {
+                    subScene[i].style.display = "none";
+                    temp = subScene[i].id;
+                    if (temp == Id) {
+                        subScene[i].style.display = "block";
+                    }
+                }
+            }
+            function confirm_delete_disabled() {
+                var subScene = document.getElementsByClassName("delete-form");
+                for (let i = 0; i < subScene.length; i++) {
+                    subScene[i].style.display = "none";
+                }
+            }
+        </script> -->
+    </div>
+</body>
