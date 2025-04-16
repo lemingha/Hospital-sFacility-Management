@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Theo dõi số lượng thiết bị</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      width: 300px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .status.ok {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status.warning {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .status.danger {
+      color: red;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #007B9E;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f78;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Theo dõi số lượng thiết bị trong kho trung tâm</h2>
+
+<input type="text" id="searchInput" placeholder="🔍 Tìm thiết bị...">
+
+<table id="deviceTable">
+  <thead>
+    <tr>
+      <th>Tên thiết bị</th>
+      <th>Số lượng trong kho</th>
+      <th>Ngưỡng tối thiểu</th>
+      <th>Điều chỉnh</th>
+      <th>Trạng thái tồn kho</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Máy thở PHILIPS</td>
+      <td>12</td>
+      <td>5</td>
+      <td><input type="number" class="adjust-input" value="0"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Bơm tiêm điện</td>
+      <td>3</td>
+      <td>5</td>
+      <td><input type="number" class="adjust-input" value="0"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Monitor theo dõi</td>
+      <td>0</td>
+      <td>2</td>
+      <td><input type="number" class="adjust-input" value="0"></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<button onclick="applyAdjustment()">💾 Lưu điều chỉnh</button>
+
+<button onclick="exportToExcel()">📥 Xuất Excel</button>
+
+<script>
+  // Tìm kiếm theo tên thiết bị
+  document.getElementById("searchInput").addEventListener("keyup", function () {
+    const filter = this.value.toUpperCase();
+    const rows = document.querySelectorAll("#deviceTable tbody tr");
+
+    rows.forEach(row => {
+      const cell = row.querySelector("td");
+      if (cell && cell.textContent.toUpperCase().indexOf(filter) > -1) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+
+  // Xuất Excel
+  function exportToExcel() {
+    const table = document.getElementById("deviceTable");
+    const wb = XLSX.utils.table_to_book(table, { sheet: "Thiết bị" });
+    XLSX.writeFile(wb, "thiet_bi_ton_kho.xlsx");
+  }
+</script>
+
+<script>
+    // Tự động tính trạng thái tồn kho theo số lượng
+  window.addEventListener("DOMContentLoaded", () => {
+    const rows = document.querySelectorAll("#deviceTable tbody tr");
+
+    rows.forEach(row => {
+      const quantity = parseInt(row.cells[1].textContent);
+      const threshold = parseInt(row.cells[2].textContent);
+      const statusCell = row.cells[3];
+
+      if (quantity === 0) {
+        statusCell.textContent = "⛔ Hết hàng";
+        statusCell.className = "status out ";
+      } else if (quantity <= threshold) {
+        statusCell.textContent = "⚠️ Sắp hết";
+        statusCell.className = "status low";
+      } else {
+        statusCell.textContent = "✅ Còn nhiều";
+        statusCell.className = "status ok";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

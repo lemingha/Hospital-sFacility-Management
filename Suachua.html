@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<!--phần đầu-->
+<head>
+    <title>Suachua</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2f8895050a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        .list-group.item3 {
+            background-color: #001F54;
+            color: #FEFCFB !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="Navigator">
+        <div id="title">
+            HỆ THỐNG QUẢN LÝ VẬT TƯ Y TẾ
+        </div>
+        <div class="list-group">
+            <a class="list-group item1" href="Trangchu.html">
+                <i class="fa-solid fa-chart-simple"></i>
+                Tổng quan
+            </a>
+            <a class="list-group item2" href="Thietbi.html">
+                <i class="fa-solid fa-bed"></i>
+                Thiết bị
+            </a>
+            <a class="list-group item3" href="Baotri_Suachua.html">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Bảo trì - sửa chữa
+            </a>
+            <a class="list-group item4" href="Kho.html">
+                <i class="fa-solid fa-warehouse"></i>
+                Kho - chuyển thiết bị
+            </a>
+            <a class="list-group item5" href="Taichinh-Hopdong.html">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Tài chính - Hợp đồng
+            </a>
+            <a class="list-group item6" href="Phuluc.html">
+                <i class="fa-solid fa-rectangle-list"></i>
+                Phụ lục - Tra cứu mã
+            </a>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="surgery-schedule">
+            <div class="surgery-major">
+                <div class="surgery-title">
+                    SỬA CHỮA
+                </div>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#thongtin">Thông tin thiết bị</a>
+            <a href="#yeucau">Tạo yêu cầu sửa chữa</a>
+            <a href="#thongbao">Thông báo sửa chữa</a>
+        </nav>           
+
+        <div class="maintain-data">
+            <section class="maintain-title" id="thongtin">
+                1. Thông tin thiết bị sửa chữa
+            </section>
+            <div class="maintain-table">
+                <div class="surgery-table">
+                    <table id="surgery-table">
+                        <div class="wrap-sreach">
+                            <input name="searchString" class="search" style="width: 21rem;" type="text" placeholder="Tìm kiếm">
+                            
+                            <input type="month" id="filter-date">
+
+                            <button class="searchingpatient" style="color: white;border: 1px #001F54 solid;font-size: 1.1rem; font-family: lato; padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 8px;" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Tìm Kiếm
+                            </button>
+                        </div>
+
+                        <table id="dataTable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Tên thiết bị<br></th>
+                                    <th>Ngày hỏng</th>
+                                    <th>Ngày sửa chữa (dự kiến)</th>
+                                    <th>Vị trí hiện tại</th>
+                                    <th>Tình trạng</th>
+                                    <th> Xem thêm </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td id="facility"> Máy thở Philip </td>
+                                    <td id="facility"> 1/4/2025 </td>
+                                    <td id="facility"> 15/4/2025 </td>
+                                    <td id="facility"> Kho </td>
+                                    <td id="facility"> Chưa sửa chữa </td >
+                                    <td id="facility"> 
+                                        <div class="dropdown">
+                                            <i class="bi bi-three-dots dropdown-toggle-icon" style="cursor: pointer;"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="facility"> Máy siêu âm doppler </td>
+                                    <td id="facility"> 31/3/2025 </td>
+                                    <td id="facility"> 11/4/2025 </td>
+                                    <td id="facility"> Khoa phụ sản </td>
+                                    <td id="facility"> Đang sửa chữa </td >
+                                    <td id="facility"> 
+                                        <div class="dropdown">
+                                            <i class="bi bi-three-dots dropdown-toggle-icon" style="cursor: pointer;"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        
+                        <div id="floatingDropdown" class="floating-dropdown" style="display: none;">
+                            <a href="#">Chi tiết thông tin thiết bị</a>
+                            <a href="#">Chỉnh sửa lịch bảo trì</a>
+                        </div>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="maintain-data">
+            <section class="maintain-title" id="yeucau">
+                2. Tạo yêu cầu sửa chữa
+            </section>
+            <div class="repair-request-form">
+            
+                <form onsubmit="handleSubmit(event)">
+                    <div>
+                        <label for="device">Chọn thiết bị:</label>
+                        <select id="device" name="device" style="margin-right: 1rem;" required>
+                            <option value="">-- Chọn thiết bị --</option>
+                            <option value="maytho">Máy thở PHILIP</option>
+                            <option value="doppler">Máy siêu âm Doppler</option>
+                        </select>
+
+                        <label for="priority">Mức độ ưu tiên:</label>
+                        <select id="priority" name="priority" required>
+                            <option value="">-- Chọn mức ưu tiên --</option>
+                            <option value="cao">Cao</option>
+                            <option value="trungbinh">Trung bình</option>
+                            <option value="thap">Thấp</option>
+                        </select>
+                    </div>
+            
+                  <!-- Mô tả lỗi -->
+                  <label for="description">Mô tả lỗi:</label>
+                  <textarea id="description" name="description" rows="4" placeholder="Nhập mô tả lỗi..." required></textarea>
+            
+                  <!-- Ảnh đính kèm -->
+                  <label for="image">Đính kèm hình ảnh (nếu có):</label>
+                  <input type="file" id="image" name="image" accept="image/*">
+            
+                  <!-- Gửi yêu cầu -->
+                  <button type="submit">Gửi yêu cầu</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="maintain-data" id="thongbao">
+            <section class="maintain-title">
+                3. Thông báo sửa chữa
+            </section>
+            <div class="device-container">
+
+                <!-- Thiết bị 1 -->
+                <div class="device-card" onclick="toggleTimeline(this)">
+                  <div class="device-header">
+                    <div class="device-name">Máy thở PHILIP</div>
+                    <div class="device-status">Đang chờ linh kiện</div>
+                  </div>
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="time">10/04/2025 - 08:30</div>
+                      <div class="title">Tiếp nhận yêu cầu</div>
+                      <div class="description">Yêu cầu sửa chữa được ghi nhận từ khoa hồi sức.</div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="time">12/04/2025 - 09:00</div>
+                      <div class="title">Kiểm tra thiết bị</div>
+                      <div class="description">Lỗi board nguồn, cần thay linh kiện.</div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="time">13/04/2025 - 14:20</div>
+                      <div class="title">Đặt linh kiện</div>
+                      <div class="description">Linh kiện đang được vận chuyển từ nhà cung cấp.</div>
+                    </div>
+                  </div>
+                </div>
+            
+                <!-- Thiết bị 2 -->
+                <div class="device-card" onclick="toggleTimeline(this)">
+                  <div class="device-header">
+                    <div class="device-name">Monitor theo dõi bệnh nhân</div>
+                    <div class="device-status">Đã sửa xong</div>
+                  </div>
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="time">05/04/2025 - 13:10</div>
+                      <div class="title">Tiếp nhận yêu cầu</div>
+                      <div class="description">Monitor không hiển thị tín hiệu ECG.</div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="time">06/04/2025 - 09:00</div>
+                      <div class="title">Đã sửa xong</div>
+                      <div class="description">Thay dây cảm biến và hiệu chuẩn lại thiết bị.</div>
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+            
+              <script>
+                function toggleTimeline(card) {
+                  const timeline = card.querySelector('.timeline');
+                  timeline.style.display = timeline.style.display === 'block' ? 'none' : 'block';
+                }
+              </script>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.getElementById('floatingDropdown');
+            let activeIcon = null;
+        
+            document.querySelectorAll('.dropdown-toggle-icon').forEach(icon => {
+                icon.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Ngăn click lan ra ngoài
+                    const rect = icon.getBoundingClientRect();
+        
+                    dropdown.style.top = rect.bottom + window.scrollY + 'px';
+                    dropdown.style.left = rect.left + window.scrollX + 'px';
+        
+                    // Toggle hiển thị
+                    if (dropdown.style.display === 'block' && activeIcon === icon) {
+                        dropdown.style.display = 'none';
+                        activeIcon = null;
+                    } else {
+                        dropdown.style.display = 'block';
+                        activeIcon = icon;
+                    }
+                });
+            });
+        
+            // Ẩn dropdown nếu click ngoài
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.style.display = 'none';
+                    activeIcon = null;
+                }
+            });
+        });
+    </script>
+</body>

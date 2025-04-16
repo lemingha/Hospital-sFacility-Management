@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<!--phần đầu-->
+<head>
+    <title>Kho</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2f8895050a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        .list-group.item4 {
+            background-color: #001F54;
+            color: #FEFCFB !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="Navigator">
+        <div id="title">
+            HỆ THỐNG QUẢN LÝ VẬT TƯ Y TẾ
+        </div>
+        <div class="list-group">
+            <a class="list-group item1" href="Trangchu.html">
+                <i class="fa-solid fa-chart-simple"></i>
+                Tổng quan
+            </a>
+            <a class="list-group item2" href="Thietbi.html">
+                <i class="fa-solid fa-bed"></i>
+                Thiết bị
+            </a>
+            <a class="list-group item3" href="Baotri_Suachua.html">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Bảo trì - sửa chữa
+            </a>
+            <a class="list-group item4" href="Kho.html">
+                <i class="fa-solid fa-warehouse"></i>
+                Kho - chuyển thiết bị
+            </a>
+            <a class="list-group item5" href="Taichinh-Hopdong.html">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Tài chính - Hợp đồng
+            </a>
+            <a class="list-group item6" href="Phuluc.html">
+                <i class="fa-solid fa-rectangle-list"></i>
+                Phụ lục - Tra cứu mã
+            </a>
+        </div>
+    </div>
+    <div class="Main">
+         
+        <div class="surgery-schedule">
+            <div class="surgery-major">
+                <div class="surgery-title">
+                    📦QUẢN LÍ KHO VÀ ĐIỀU CHUYỂN THIẾT BỊ   
+                </div>
+            </div>
+        </div>
+        
+        <nav class="menu">
+            <a href="#thongtin">Thông tin thiết bị trong kho</a>
+            <a href="#xuatnhap"> Xuất nhập thiết bị giữa các kho</a>
+            <a href="#dieuchuyen">Điều chuyển và thu hồi</a>
+        </nav>  
+
+        <div class="group-container">
+
+            <div class="store">
+                <section class="maintain-title" id="thongtin">
+                    📦Thông tin thiết bị trong kho
+                </section>
+                <input type="text" id="searchInput" placeholder="🔍 Tìm thiết bị...">
+                <table id="deviceTable">
+                    <thead>
+                    <tr>
+                        <th>Tên thiết bị</th>
+                        <th>Số lượng trong kho</th>
+                        <th>Ngưỡng tối thiểu</th>
+                        <th>Điều chỉnh số lượng</th>
+                        <th>Trạng thái tồn kho</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Máy thở PHILIPS</td>
+                        <td>12</td>
+                        <td>5</td>
+                            <td><input type="number" class="adjust-input" value="0"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Bơm tiêm điện</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td><input type="number" class="adjust-input" value="0"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Monitor theo dõi</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td><input type="number" class="adjust-input" value="0"></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table><br>
+                <button class="submit-button" onclick="applyAdjustment()">💾 Lưu điều chỉnh</button>
+                <button class="submit-button" onclick="exportToExcel()">📥 Xuất Excel </button><br>
+            </div>
+
+            <div class="store">
+                <section class="maintain-title" id="xuatnhap">
+                    🚛 Xuất nhập thiết bị giữa các kho
+                </section>
+                <h3></h3>
+                <ul class="function-list">
+                    <li>Ghi nhận thông tin thiết bị nhập kho</li>
+                    <li>Ghi nhận thông tin thiết bị xuất kho</li>
+                </ul>
+            </div>
+            
+                <!-- Nhóm 3 -->
+            <div class="store">
+                <section class="maintain-title" id="dieuchuyen">
+                    🔁 Điều chuyển và thu hồi
+                </section>
+                <ul class="function-list">
+                    <li>Tạo yêu cầu chuyển thiết bị</li>
+                    <li>Ghi nhận quá trình điều chuyển</li>
+                    <li>Quản lý thu hồi thiết bị</li>
+                </ul>
+            </div>
+
+        </div> 
+   
+    </div>
+    <script>
+        // Tìm kiếm theo tên thiết bị
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+          const filter = this.value.toUpperCase();
+          const rows = document.querySelectorAll("#deviceTable tbody tr");
+      
+          rows.forEach(row => {
+            const cell = row.querySelector("td");
+            if (cell && cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              row.style.display = "";
+            } else {
+              row.style.display = "none";
+            }
+          });
+        });
+      
+        // Xuất Excel
+        function exportToExcel() {
+          const table = document.getElementById("deviceTable");
+          const wb = XLSX.utils.table_to_book(table, { sheet: "Thiết bị" });
+          XLSX.writeFile(wb, "thiet_bi_ton_kho.xlsx");
+        }
+      
+        // Lưu điều chỉnh số lượng và cập nhật trạng thái
+        function applyAdjustment() {
+          const rows = document.querySelectorAll("#deviceTable tbody tr");
+      
+          rows.forEach(row => {
+            const originalQtyCell = row.cells[1];
+            const originalQty = parseInt(originalQtyCell.textContent);
+            const threshold = parseInt(row.cells[2].textContent);
+            const adjustment = parseInt(row.querySelector(".adjust-input").value) || 0;
+            const newQty = originalQty + adjustment;
+      
+            // Cập nhật số lượng
+            originalQtyCell.textContent = newQty;
+      
+            // Cập nhật trạng thái tồn kho
+            const statusCell = row.cells[4];
+            if (newQty <= 0) {
+              statusCell.textContent = "⛔ Hết hàng";
+              statusCell.className = "status out";
+            } else if (newQty <= threshold) {
+              statusCell.textContent = "⚠️ Sắp hết";
+              statusCell.className = "status low";
+            } else {
+              statusCell.textContent = "✅ Còn nhiều";
+              statusCell.className = "status ok";
+            }
+      
+            // Reset ô điều chỉnh
+            row.querySelector(".adjust-input").value = 0;
+          });
+        }
+      
+        // Tính trạng thái tồn kho ban đầu
+        window.addEventListener("DOMContentLoaded", () => {
+          const rows = document.querySelectorAll("#deviceTable tbody tr");
+      
+          rows.forEach(row => {
+            const quantity = parseInt(row.cells[1].textContent);
+            const threshold = parseInt(row.cells[2].textContent);
+            const statusCell = row.cells[4]; // fix đúng cột trạng thái
+      
+            if (quantity === 0) {
+              statusCell.textContent = "⛔ Hết hàng";
+              statusCell.className = "status out";
+            } else if (quantity <= threshold) {
+              statusCell.textContent = "⚠️ Sắp hết";
+              statusCell.className = "status low";
+            } else {
+              statusCell.textContent = "✅ Còn nhiều";
+              statusCell.className = "status ok";
+            }
+          });
+        });
+    </script>
+
+    
+</body>

@@ -2,7 +2,7 @@
 <html>
 <!--phần đầu-->
 <head>
-    <title>Thietbi_Them</title>
+    <title>Thietbi_Chitiet</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/2f8895050a.js" crossorigin="anonymous"></script>
@@ -49,67 +49,80 @@
     <div class="Main">
         <div class="facility-add" style="padding-top: 3rem;">
             <div class="surgery-navigator">
-                <div class="surgery-major-button" style="display: inline;">
-                    <!-- nghiệp vụ -->
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            NGHIỆP VỤ
-                            <div class="dropbtn-icon"><i class="fa-solid fa-user-tie"></i></div>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="Thietbi-them.html">Thêm thiết bị</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="surgery-major-title">
-                    <i class="fa-solid fa-chevron-right"></i>
-                    THÊM THIẾT BỊ
+                    CHI TIẾT THIẾT BỊ
                 </div>
             </div>
             <form action="#" method="post" style="padding-top: 3rem;">
+                <div class="form-group-title">
+                    Thông tin
+                </div> 
+
                 <div class="form-group">
                     <div>
                         <label for="deviceName">Tên thiết bị:</label>
-                        <input type="text" id="deviceName" name="deviceName" required>
+                        <input type="text" id="deviceName" name="deviceName" value="Máy thở Philip" required>
                     </div>
-                    
                     <div>
                         <label for="manufacturer">Tên nhà sản xuất:</label>
-                    <input type="text" id="manufacturer" name="manufacturer" required>
+                        <input type="text" id="manufacturer" name="manufacturer" value="Philip" required>
                     </div>
                     
                     <div>
                         <label for="manufacturer">Mã sản phẩm:</label>
-                    <input type="text" id="deviceCode" name="manufacturer" required>
+                    <input type="text" id="deviceCode" name="manufacturer" value="3834578" required>
                     </div>
                 </div>
-                
+                <div class="form-group-title">
+                    Tình trạng - Vị trí
+                </div>
                 <div class="form-group">
                     <div>
-                        <label for="deviceCategory">Phân loại thiết bị:</label>
+                        <label for="deviceCategory">Tình trạng hoạt động:</label>
                         <select id="deviceCategory" name="deviceCategory" required>
                             <option value="">Chọn phân loại</option>
-                            <option value="type1">Loại 1</option>
-                            <option value="type2">Loại 2</option>
-                            <option value="type3">Loại 3</option>
+                            <option value="type1">NEW</option>
+                            <option value="type2">ACT</option>
+                            <option value="type3">MTN</option>
+                            <option value="type3">FIX</option>
+                            <option value="type3">DIS</option>
                         </select>
                     </div>
                     <div>
-                        <label for="deviceType">Loại thiết bị:</label>
-                    <select id="deviceType" name="deviceType" required>
-                        <option value="">Chọn loại</option>
-                        <option value="diagnostic">Chẩn đoán</option>
-                        <option value="therapeutic">Điều trị</option>
-                        <option value="surgical">Phẫu thuật</option>
-                    </select>
+                        <label for="manufacturer">Vị trí hoạt động</label>
+                        <input type="text" id="manufacturer" name="manufacturer" value="ICU" required>
                     </div>
                 </div>
-                <label for="maintenancePeriod">Thời hạn bảo trì (tháng/lần):</label>
-                <input type="number" id="maintenancePeriod" name="maintenancePeriod" min="1" required><br><br>
-
+                <div class="form-group-title">
+                    Lịch sử sử dụng
+                </div>
+                <div class="form-group">
+                    <table id="dataTable" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ngày nhập kho</th>
+                                <th>Ngày xuất kho</th>
+                                <th>Vị trí sau khi xuất kho</th>
+                                <th>Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="facility">1</td>
+                                <td id="facility"> 12/3/2024 </td>
+                                <td id="facility"> 2/3/2025 </td>
+                                <td id="facility"> ICU</td>
+                                <td id="facility"> ACT </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <label for="description">Mô tả:</label><br><br>
-                <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
-                <button class="submit-button">Thêm thiết bị</button>
+                <textarea id="description" name="description" rows="4" cols="50" required> Đang sử dụng tốt, hoạt động ở phòng Hồi sức, chưa bảo trì lần nào
+                </textarea><br><br>
+                <button class="submit-button">Cập nhật</button>
+                <button class="cancel-button">Thoát</button>
             </form>
         </div>
         

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<!--phần đầu-->
+<head>
+    <title>Baotri</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2f8895050a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+
+    <style>
+        .list-group.item3 {
+            background-color: #001F54;
+            color: #FEFCFB !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="Navigator">
+        <div id="title">
+            HỆ THỐNG QUẢN LÝ VẬT TƯ Y TẾ
+        </div>
+        <div class="list-group">
+            <a class="list-group item1" href="Trangchu.html">
+                <i class="fa-solid fa-chart-simple"></i>
+                Tổng quan
+            </a>
+            <a class="list-group item2" href="Thietbi.html">
+                <i class="fa-solid fa-bed"></i>
+                Thiết bị
+            </a>
+            <a class="list-group item3" href="Baotri_Suachua.html">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Bảo trì - sửa chữa
+            </a>
+            <a class="list-group item4" href="Kho.html">
+                <i class="fa-solid fa-warehouse"></i>
+                Kho - chuyển thiết bị
+            </a>
+            <a class="list-group item5" href="Taichinh-Hopdong.html">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Tài chính - Hợp đồng
+            </a>
+            <a class="list-group item6" href="Phuluc.html">
+                <i class="fa-solid fa-rectangle-list"></i>
+                Phụ lục - Tra cứu mã
+            </a>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="surgery-schedule">
+            <div class="surgery-major">
+                <div class="surgery-title">
+                    BẢO TRÌ
+                </div>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#thongtin">Danh sách thông tin bảo trì</a>
+            <a href="#kehoach">Kế hoạch bảo trì</a>
+            <a href="#thongbao">Tiến độ - Thông báo</a>
+        </nav>   
+
+
+        <div class="maintain-data">
+            <section class="maintain-title" id="thongtin">
+                1. Danh sách bảo trì
+            </section>
+            <div class="maintain-table">
+                <div class="surgery-table">
+                    <table id="surgery-table">
+                        <div class="wrap-sreach">
+                            <input name="searchString" class="search" style="width: 21rem;" type="text" placeholder="Điền thông tin">
+                            
+                            <input type="month" id="filter-date">
+
+                            <button class="searchingpatient" style="color: white;border: 1px #001F54 solid;font-size: 1.1rem; font-family: lato; padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 8px;" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Tìm Kiếm
+                            </button>
+                        </div>
+
+                        <table id="dataTable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Tên thiết bị<br></th>
+                                    <th>Ngày bảo trì</th>
+                                    <th>Vị trí hiện tại</th>
+                                    <th>Tình trạng</th>
+                                    <th> Xem thêm </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td id="facility"> Máy thở Philip </td>
+                                    <td id="facility"> 31/3/2025 </td>
+                                    <td id="facility"> Kho </td>
+                                    <td id="facility"> Chưa bảo trì </td >
+                                    <td id="facility"> 
+                                        <div class="dropdown">
+                                            <i class="bi bi-three-dots dropdown-toggle-icon" style="cursor: pointer;"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="facility"> Máy siêu âm doppler </td>
+                                    <td id="facility"> N/A </td>
+                                    <td id="facility"> Khoa phụ sản </td>
+                                    <td id="facility"> Chưa bảo trì </td >
+                                    <td id="facility"> 
+                                        <div class="dropdown">
+                                            <i class="bi bi-three-dots dropdown-toggle-icon" style="cursor: pointer;"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        
+                        <div id="floatingDropdown" class="floating-dropdown" style="display: none;">
+                            <a href="#">Chi tiết thông tin thiết bị</a>
+                            <a href="#">Chỉnh sửa lịch bảo trì</a>
+                        </div>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="maintain-data">
+            <section class="maintain-title" id="kehoach">
+                2. Kế hoạch bảo trì
+            </section>
+
+            <div class="repair-request-form" style="max-width: none;" onsubmit="handleSubmit(event)">
+                <div class="planer-form">
+                    <label>Thiết bị:</label>
+                    <input type="text" placeholder="Nhập tên thiết bị trong danh sách trên" style="width: 18rem; margin-right: 1rem;" />
+                    
+                    <label>Ngày bảo trì:</label>
+                    <input type="date" />
+                </div> <br>
+                <div class="planer-form">
+                    <label>Người phụ trách giao nhận thiết bị:</label>
+                    <input type="text" style="margin-right: 1rem;" />
+                    
+                    <label>
+                        
+                        <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
+                        Số điện thoại liên hệ:</label>
+                    <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
+                    </div><br>
+    
+                <div class="planer-form">
+                    <label>Người phụ trách bảo trì:</label>
+                    <input type="text" style="margin-right: 1rem;"  />
+                    
+                    <label>
+                        <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
+                        Số điện thoại liên hệ:</label>
+                    <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
+                    </div> <br>
+                <button >Lưu</button>
+                <button >Đặt lại</button>
+            </form>
+            </div>
+        </div>
+
+        <div class="maintain-data">
+            <section class="maintain-title" id="thongbao">
+                3. Tiến độ - Thông báo
+            </section>
+            <div class="maintenance-dashboard">
+                <!-- Quá hạn -->
+                <div class="status-column overdue">
+                  <h3> ⛔ Quá hạn bảo trì</h3>
+                  <div class="device-item">
+                    <strong>Máy xét nghiệm huyết học</strong>
+                    Hạn: 05/04/2025<br>
+                    Vị trí: Khoa Xét nghiệm
+                    <div style="padding-top: 0.5rem;">
+                        <button id="popup-button" class="reschedule-btn" onclick="openRescheduleModal('Máy xét nghiệm huyết học')">📅 Lập lại lịch</button>
+                        <button id="popup-button" onclick="sendReminder('Máy thở Philip', 'Nguyễn Văn A', '0987654321')"> 📩 Gửi nhắc</button>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Sắp đến hạn -->
+                <div class="status-column comingup">
+                  <h3>🕒 Sắp đến hạn</h3>
+                  <div class="device-item">
+                    <strong>Máy thở Philip</strong>
+                    Hạn: 10/04/2025<br>
+                    Vị trí: Phòng ICU
+                    <div style="padding-top: 0.5rem;">
+                        <button id="popup-button" class="reschedule-btn" onclick="openRescheduleModal('Máy xét nghiệm huyết học')">📅 Lập lại lịch</button>
+                        <button id="popup-button" onclick="sendReminder('Máy thở Philip', 'Nguyễn Văn A', '0987654321')"> 📩 Gửi nhắc</button>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Đã hoàn thành hoặc lên lịch -->
+                <div class="status-column completed">
+                  <h3>✅ Đã bảo trì / Lên lịch</h3>
+                  <div class="device-item">
+                    <strong>Máy siêu âm</strong>
+                    Đã bảo trì ngày: 01/04/2025<br>
+                    Người phụ trách: Nguyễn Văn A
+                    <div style="padding-top: 0.5rem;">
+                        <button id="popup-button" class="reschedule-btn" onclick="openRescheduleModal('Máy xét nghiệm huyết học')">📅 Lập lại lịch</button>
+                        <button id="popup-button" onclick="sendReminder('Máy thở Philip', 'Nguyễn Văn A', '0987654321')"> 📩 Gửi nhắc</button>
+                    </div>
+                </div>
+            </div>
+            <div id="rescheduleModal" class="modal">
+                <div class="modal-content">
+                    <div style="text-align: center; font-family: Lato; color: #001F54; font-size: 1.5rem; font-weight: 800; text-transform: uppercase;">
+                        Lập lại lịch bảo trì
+                    </div><br>
+                    <form id="rescheduleForm">
+                        <label>Tên thiết bị:</label>
+                        <input type="text" id="deviceName" style="margin-right:1rem;" readonly />
+
+                        <label>Ngày bảo trì mới:</label>
+                        <input type="date" id="newDate" required /><br><br>
+
+                        <button id="popup-button-reschedule" type="submit">Cập nhật</button>
+                        <button id="popup-button-reschedule" type="button" onclick="closeRescheduleModal()">Huỷ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+     
+    <script> /* modal */
+        function openRescheduleModal(deviceName) {
+            document.getElementById("rescheduleModal").style.display = "flex";
+            document.getElementById("deviceName").value = deviceName;
+            }
+
+        function closeRescheduleModal() {
+            document.getElementById("rescheduleModal").style.display = "none";
+            }
+
+        document.getElementById("rescheduleForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const newDate = document.getElementById("newDate").value;
+            const device = document.getElementById("deviceName").value;
+
+            alert(`Đã cập nhật bảo trì cho thiết bị "${device}" vào ngày ${newDate}`);
+            closeRescheduleModal();
+            });
+    </script>
+
+    <script> /* gửi nhắc nhở */
+        function sendReminder(device, person, phone) {
+            alert(`Đã gửi nhắc cho ${person} (sđt: ${phone}) về thiết bị: ${device}`);
+            }
+
+    </script>
+
+    <script> /* Dropdown */
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.getElementById('floatingDropdown');
+            let activeIcon = null;
+        
+            document.querySelectorAll('.dropdown-toggle-icon').forEach(icon => {
+                icon.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Ngăn click lan ra ngoài
+                    const rect = icon.getBoundingClientRect();
+        
+                    dropdown.style.top = rect.bottom + window.scrollY + 'px';
+                    dropdown.style.left = rect.left + window.scrollX + 'px';
+        
+                    // Toggle hiển thị
+                    if (dropdown.style.display === 'block' && activeIcon === icon) {
+                        dropdown.style.display = 'none';
+                        activeIcon = null;
+                    } else {
+                        dropdown.style.display = 'block';
+                        activeIcon = icon;
+                    }
+                });
+            });
+        
+            // Ẩn dropdown nếu click ngoài
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.style.display = 'none';
+                    activeIcon = null;
+                }
+            });
+        });
+    </script>
+
+</body>

@@ -12,6 +12,7 @@ body {
     overflow: hidden;
     background-color: #f9f9f9;
     background-size: 100%;
+    scroll-behavior: smooth;
 }
 
 #title {
@@ -39,7 +40,7 @@ body {
     align-items: center; /* Căn giữa theo chiều dọc */
     gap: 10px; /* Điều chỉnh khoảng cách giữa icon và text */
     font-family: Lato;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #034078;
     padding: 20px;
@@ -170,7 +171,7 @@ body {
     }
 
     .statistical.part.three {
-        background-color: #FB8500
+        background-color: #fc9a2b
     }
 
 .fa-bed-pulse {
@@ -221,9 +222,10 @@ body {
 .statis {
     font-family: Lato;
     font-weight: 750;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #034078;
-    width: 30%;
+    width: 40%;
+    height: 100%;
     float: left;
     padding-top: 1.5rem;
 }
@@ -241,13 +243,31 @@ input#patient {
     font-size: 0.8rem;
     padding: 4px;
 }
-
+.box{
+    height: 15rem;
+    margin-bottom: 2.5rem;
+}
+.box p {
+    display: inline-block;
+    margin-right: 0.5rem; /* Khoảng cách giữa văn bản và ô nhập */
+    font-weight: bold;
+}
+.maintenance-statis, .fixing-statis
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: black;
+    border-width: 0.125rem;
+    border-style: solid;
+    background-color: #ffff;
+    border-radius: 12px;
+}
 p {
     width: fit-content;
     float: left;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
-
 .doctor.dropbox {
     width: fit-content;
     float: inline-end;
@@ -259,7 +279,7 @@ p {
 }
 
 .view.all {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #001F54;
     text-decoration: none;
 }
@@ -283,35 +303,11 @@ p {
     border-radius: 12px;
 }
 
-table {
-    width: 100%;
-}
-
-.table-up-name {
-    padding-top: 0.7rem;
-    padding-left: 1.0rem;
-    width: 50%;
-    font-size: 1.15rem;
-}
-
-.table-down-name {
-    padding-left: 1rem;
-    width: 50%;
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.table-side-name {
-    padding-top: 1rem;
-    padding-right: 1rem;
-    float: inline-end;
-    font-size: 1.1rem;
-}
-
-
-.patient-chart {
-    margin-top: 1rem;
-}
+.facility-static{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+} 
 
 .finace-statis {
     width: 100%;
@@ -324,13 +320,6 @@ table {
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center;
 }
-
-.mypiechart {
-    height: 14rem;
-    width: 14rem;
-    margin: 1rem 1rem 1rem 1rem;
-}
-
 .patient-statis {
     width: 100%;
     display: flex; /* Use flexbox */
@@ -342,16 +331,9 @@ table {
     border-radius: 12px;
 }
 
-.mydonutchart {
-    height: 17rem;
-    width: 17rem;
-    margin: 1rem 1rem 1rem 1rem;
-}
-/* lịch phẫu thuật */
 .surgery-schedule {
     margin-top: 2.5rem;
 }
-
 .surgery-major {
     width: 100%;
     padding-bottom: 1rem;
@@ -360,12 +342,8 @@ table {
     align-items: center;
 }
 
-.surgery-button {
-    float: left;
-}
-
 .surgery-title {
-    font-weight: 900;
+    font-weight: 950;
     width: 82rem;
     float: left;
     font-family: Lato;
@@ -458,19 +436,18 @@ th {
     font-size: 1.1rem;
     text-transform: uppercase;
 }
-
 td#delete {
     border: 1px solid #001F54;
     padding: 4px;
     text-align: left;
 }
 
-#delete {
+#deleteBtn {
     border-width: 0px;
     font-size: 1rem;
 }
 
-#delete:hover {
+#deleteBtn:hover {
     color: #EF476F;
 }
 
@@ -496,7 +473,7 @@ td#detail {
 }
  /* Style for table cells */
 
-td#facility, th {
+td, th {
     overflow-y: auto;
     border: 1px solid #001F54;
     padding: 0.5rem;
@@ -515,13 +492,22 @@ td#tinhtrangphong {
     font-size: 1.1rem;
 }
 
+
+#confirmDelete {
+    background: red;
+    color: white;
+}
+
+#cancelDelete {
+    background: gray;
+    color: white;
+} 
 /* Thêm thiết bị*/
 
 .surgery-major-title {
     display: inline;
     font-family: lato;
-    font-size: 1.5rem;
-    padding-left: 1rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #001F54;
 }
@@ -539,7 +525,7 @@ label {
     background-color: #001F54;
     font-family: Lato;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #f1f1f1;
     padding: 0.5rem;
     border-radius: 8px;
@@ -551,7 +537,7 @@ label {
 }
 input, textarea {
     font-family: Lato;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.4rem;
     border-radius: 8px;
     border-width: 1px;
@@ -559,13 +545,20 @@ input, textarea {
 }
 select {
     font-family: Lato;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.4rem;
     border-radius: 8px;
     border-width: 1px;
     width: auto;
 }
 /* Chi tiết các ô input */
+.form-group-title{
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    font-family: Lato;
+    font-weight: 700;
+    color: #1282A2;
+}
 
 #patient-name {
     width: 30rem;
@@ -604,11 +597,25 @@ select {
     width: fit-content;
     display: inline;
 }
-
+.cancel-button{
+    color: white;
+    background-color: #00358f;
+    font-size: 1.2rem;
+    font-family: Lato;
+    font-weight: 800;
+    border-radius: 8px;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 0.7rem 2.5rem 0.5rem 2.5rem;
+}
+    .cancel-button:hover{
+        background-color: #118AB2;
+        transform: scale(1.05);
+    }
 .submit-button {
     color: white;
     background-color: #001F54;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: Lato;
     font-weight: 800;
     border-radius: 8px;
@@ -621,18 +628,10 @@ select {
         background-color: #118AB2;
         transform: scale(1.05);
     }
-
-
-.reset-button {
-    margin-left: 2rem;
-    display: inline;
-    width: fit-content;
-}
-
 #reset-button {
     color: #034078;
     background-color: #f8f6f6;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: Lato;
     font-weight: 800;
     border-radius: 8px;
@@ -654,7 +653,7 @@ select {
 #finding-button {
     color: white;
     background-color: #034078;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: Lato;
     font-weight: 800;
     border-radius: 8px;
@@ -760,7 +759,379 @@ input.patient-address {
     margin-bottom: 1.5rem;
 }
 
-.roomstatus {
-    height: 5rem;
-    width: 100%;
-}   
+/*tiếp tục*/
+.maintain-fixing{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; 
+    font-family: Lato;
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    font-weight: 800;
+    margin-top: 1.8rem;
+}
+.maintain-manage, .fixing-manage {
+    flex: 1; /* Chia đều không gian */
+    border: 2px solid black; /* Viền đen */
+    border-radius: 12px; /* Bo góc */
+    padding: 1rem;
+    text-align: center;
+    background-color: #118AB2;
+    font-family: Lato;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none; /* Loại bỏ gạch chân */
+    color: inherit; /* Giữ nguyên màu chữ mặc định */
+    display: flex;
+    flex-direction: column; /* Sắp xếp icon trên text */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+}
+.maintain-manage i, .fixing-manage i {
+    font-size: 3rem; /* Kích thước icon */
+    margin-bottom: 1rem; /* Khoảng cách giữa icon và text */
+}
+.guide-box{
+    margin-top: 10px;
+    padding: 3rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 80%;
+    font-weight: 500;
+    color: #034078;
+    text-align: left; /* Căn phải nội dung */
+    display: flex;
+}
+.maintain-title{
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-family: Lato;
+    text-transform: uppercase;
+    font-weight: 950;
+    color: #1282A2;
+}
+.maintain-data{
+    border-bottom: 1px solid #89A8B2;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}
+.floating-dropdown {
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-family: 'Lato', sans-serif;
+}
+
+.floating-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
+    font-size: 0.95rem;
+}
+
+.floating-dropdown a:hover {
+    background-color: #f5f5f5;
+}
+.maintenance-dashboard {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .overdue {
+    background-color: #f55568; 
+  }
+.status-column{
+    font-family: Lato;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+}
+  .comingup{
+    background-color:#FF9B17;
+  }
+
+  .completed {
+    background-color: #3D8D7A; 
+  }
+
+  .device-item {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: Lato;
+  }
+
+  h3 { 
+    padding-top: 0.5rem;
+    color: white;
+    text-transform: uppercase;}
+
+  .device-item strong {
+    display: block;
+    font-weight: 800;
+    text-decoration: underline;
+}
+  #popup-button {
+    color: black;
+    background-color: #f1f1f1;
+    font-size: 0.8rem;
+    font-family: Lato;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    border-radius: 4px;
+    border-width: 0px;
+  }
+#popup-button:hover{
+    background-color: #a8e9ff;
+    transform: scale(1.05);
+}
+.modal {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+  
+  .modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    height: 8rem;       /* Chiều cao tối thiểu để thấy hiệu quả */
+    text-align: center;
+  }
+
+  @keyframes popupFade {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  #popup-button-reschedule{
+    color: black;
+    background-color: #f1f1f1;
+    font-size: 1rem;
+    font-family: Lato;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border-width: 0px;
+  }
+  #popup-button-reschedule:hover{
+    background-color: #bdeeff;
+    transform: scale(1.05);
+  }
+
+.menu {
+    background-color: #f0f4f8; /* Màu nền của nav */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Khoảng cách giữa các <a> */
+    border-radius: 8px;
+    z-index: 1000; /* Đảm bảo nổi trên các thành phần khác */
+    position: sticky;
+  }
+  
+.menu a {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #003366;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+.menu a:hover {
+    background-color: #e0eaf5;
+    color: #001F54;
+  }
+
+  /* Phần nội dung */
+  section {
+    padding: 100px 20px;
+  }
+/* request form */
+  .repair-request-form {
+    background-color: #f7f9fb;
+    border: 1px solid #ccc;
+    padding: 2rem;
+    max-width: 44rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  .repair-request-form h2 {
+    font-family: Lato;
+    text-align: center;
+    color: #007B9E;
+    margin-bottom: 1.5rem;
+  }
+
+  .repair-request-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .repair-request-form label {
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .repair-request-form input[type="file"] {
+    padding: 0.5rem;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+  }
+
+  .repair-request-form button {
+    background-color: #007B9E;
+    font-family: Lato;
+    color: white;
+    border: none;
+    padding: 0.75rem 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .repair-request-form button:hover {
+    background-color: #005f79;
+  }
+  .device-container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .device-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: Lato;
+  }
+
+  .device-card:hover {
+    background-color: #f0fbff;
+  }
+
+  .device-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .device-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #007B9E;
+  }
+
+  .device-status {
+    background-color: #e0f7fa;
+    color: #007B9E;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .timeline {
+    margin-top: 1rem;
+    padding-left: 2rem;
+    border-left: 3px solid #007B9E;
+    display: none; /* Ẩn mặc định */
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    background-color: #007B9E;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+
+  .time {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .title {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .description {
+    color: #555;
+  }
+
+  .status.ok {
+    background-color: #e6f9f0;
+    color: #2e8b57;
+    }
+
+.status.low {
+    background-color: #fff3cd;
+    color: #d39e00;
+    }
+
+.status.out {
+    background-color: #f8d7da;
+    color: #b71c1c;
+    }
+.status {
+    font-weight: bold;
+    padding: 8px 8px;
+    justify-content: center;
+    align-items: center;
+    }
+.store button {
+     padding: 0.5rem 1rem;
+     margin-right: 0.5rem;
+}
+.store{
+    border-bottom: 1px solid #89A8B2;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}

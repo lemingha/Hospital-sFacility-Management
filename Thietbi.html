@@ -28,19 +28,19 @@
                 <i class="fa-solid fa-bed"></i>
                 Thiết bị
             </a>
-            <a class="list-group item3" asp-action="Patient">
+            <a class="list-group item3" href="Baotri_Suachua.html">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
                 Bảo trì - sửa chữa
             </a>
-            <a class="list-group item4" asp-action="Staff">
+            <a class="list-group item4" href="Kho.html">
                 <i class="fa-solid fa-warehouse"></i>
                 Kho - chuyển thiết bị
             </a>
-            <a class="list-group item5" asp-action="Room">
+            <a class="list-group item5" href="Taichinh-Hopdong.html">
                 <i class="fa-solid fa-file-invoice-dollar"></i>
                 Tài chính - Hợp đồng
             </a>
-            <a class="list-group item6">
+            <a class="list-group item6" href="Phuluc.html">
                 <i class="fa-solid fa-rectangle-list"></i>
                 Phụ lục - Tra cứu mã
             </a>
@@ -83,17 +83,17 @@
                                     Tìm Kiếm
                                 </button>
                     </div>
-                    <table id="dataTable">
+                    <table id="dataTable" style="width:100%;">
                         <thead>
-                                    <tr>
-                                        <th>Tên thiết bị</th>
-                                        <th>Vị trí hiện tại</th>
-                                        <th>Ngày nhập kho</th>
-                                        <th>Ngày xuất kho</th>
-                                        <th>Loại</th>
-                                        <th>Chi tiết</th>
-                                        <th>Xóa</th>
-                                    </tr>
+                            <tr>
+                                <th>Tên thiết bị</th>
+                                <th>Vị trí hiện tại</th>
+                                <th>Ngày nhập kho</th>
+                                <th>Ngày xuất kho</th>
+                                <th>Loại</th>
+                                <th>Chi tiết</th>
+                                <th>Xóa</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -103,12 +103,14 @@
                                 <td id="facility"> 2/3/2025 </td >
                                 <td id="facility"> VENT-DT-ICU-2024-ACT </td>
                                 <td id="detail">
-                                    <button id="detail">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                    </button>
+                                    <a href="Thietbi-chitiet.html">
+                                        <button id="detail">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </button>
+                                    </a>
                                 </td>
                                 <td id="delete">
-                                    <button type="button" id="delete">
+                                    <button type="button" id="deleteBtn">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
@@ -116,21 +118,19 @@
                         </tbody>
                     </table>
                 </table>
-                <!--@if (Model.PageCount >= 0)
-                        {
-                            foreach (var item in Model.Items)
-                            {
-                                <div style="margin-top: 0.7rem; display: none; min-width: 40%; height: 30%; left: 30%; top: 30%; z-index: 1;" class="form-frame delete-form" id="@item.Patient_ID">
-                                    <a style="text-align: center; color: #034078; font-family: Lato;font-size: 1.2rem;"> Bạn có chắc chắn muốn xóa bệnh án có số hiệu là @item.Patient_ID không? </a>
-                                    <div style="margin-top: 0.7rem;">
-                                        <button class="form-submit" hover="background-color: #0069cb" style="color: white;border: 1px #001F54 solid;font-size: 1.1rem;font-family: lato;padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 4px; " onclick="location.href='@Url.Action("DeletePatient", new{ patient_id = @item.Patient_ID})'" value="Có">Có</button>
-                                        <button class="form-submit" hover="background-color: #0069cb" onclick="confirm_delete_disabled()" style="margin-left: 1rem; color: white;border: 1px #001F54 solid;font-size: 1.1rem;font-family: lato;padding: 0.5rem 1rem;background-color: #1282A2;border-radius: 4px;">Không</button>
-                                    </div>
-                                </div> 
-                            }
-                        } -->
             </div>
         </div>
+
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <p style="text-align: center; font-family: Lato; color: #001F54; font-size: 1.2rem; font-weight: 800; text-transform: uppercase;">Bạn có chắc chắn muốn xóa thiết bị này không?</p><br>
+                <div>
+                    <button id="popup-button-reschedule" class="confirmDelete">Xóa</button>
+                    <button id="popup-button-reschedule" class="cancelDelete">Quay lại</button>
+                </div>
+            </div>
+        </div>
+
         <!--<script>
             function confirm_detele(id) {
                 Id = "" + id;
@@ -150,5 +150,25 @@
                 }
             }
         </script> -->
+        <script>
+            document.querySelectorAll("#deleteBtn").forEach(function(btn) {
+                btn.addEventListener("click", function () {
+                    document.getElementById("confirmModal").style.display = "flex";
+                });
+            });
+
+            document.querySelectorAll(".cancelDelete").forEach(function(btn) {
+                btn.addEventListener("click", function () {
+                    document.getElementById("confirmModal").style.display = "none";
+                });
+            });
+
+            document.querySelectorAll(".confirmDelete").forEach(function(btn) {
+                btn.addEventListener("click", function () {
+                    alert("Đã xóa! (Bạn có thể thêm logic xóa ở đây)");
+                    document.getElementById("confirmModal").style.display = "none";
+                });
+            });
+        </script>
     </div>
 </body>

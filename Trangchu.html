@@ -28,19 +28,19 @@
                 <i class="fa-solid fa-bed"></i>
                 Thiết bị
             </a>
-            <a class="list-group item3" asp-action="Patient">
+            <a class="list-group item3" href="Baotri_Suachua.html">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
                 Bảo trì - sửa chữa
             </a>
-            <a class="list-group item4" asp-action="Staff">
+            <a class="list-group item4" href="Kho.html">
                 <i class="fa-solid fa-warehouse"></i>
                 Kho - chuyển thiết bị
             </a>
-            <a class="list-group item5" asp-action="Room">
+            <a class="list-group item5" href="Taichinh-Hopdong.html">
                 <i class="fa-solid fa-file-invoice-dollar"></i>
                 Tài chính - Hợp đồng
             </a>
-            <a class="list-group item6">
+            <a class="list-group item6" href="Phuluc.html">
                 <i class="fa-solid fa-rectangle-list"></i>
                 Phụ lục - Tra cứu mã
             </a>
@@ -129,123 +129,34 @@
                         </a> 
                     </div>
                     <div class="upcoming-table">
-                        
                     </div>
                 </div>
                 <div class="finace patient statis">
-                    <div class="finace chart">
+                    <div class="maintenance box">
                         <p>Danh sách bảo trì</p>
                         <div class="finace-dropbox">
                             <input type="date" id="finace" name="birthday">
                         </div>
-                        <div class="finace-statis">
-                            <div class="mypiechart">
-                                <canvas id="myPieChart">
-                                    <script>
-                                        var ctx = document.getElementById('myPieChart').getContext('2d');
-                                        var data = {
-                                            labels: ['Khoản thu', 'Khoản chi'],
-                                            datasets: [{
-                                                data: [50, 20],
-                                                backgroundColor: ['#facc15', '#14b8a6']
-                                            }]
-                                        };
-                                        var myPieChart = new Chart(ctx, {
-                                            type: 'pie',
-                                            data: data
-                                        });
-                                    </script>
-                                </canvas>
-                            </div>
+                        <div class="maintenance-statis">
                         </div>
                     </div>
-                    <div class="patient-chart">
+                    <div class="fixing box">
                         <p>Danh sách sửa chữa</p>
                         <div class="patient-dropbox">
                             <input type="date" id="patient" name="birthday">
                         </div>
-                        <div class="patient-statis">
-                            <div class="mydonutchart">
-                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                                <script>
-                                    const xValues = ["Từ 0 đến 20 tuổi", "Từ 20 đến 45 tuổi", "Từ 45 tuổi trở lên"];
-                                    const yValues = [55, 49, 44];
-                                    const barColors = [
-                                        "#b91d47",
-                                        "#00aba9",
-                                        "#2b5797",
-                                        "#e8c3b9",
-                                        "#1e7145"
-                                    ];
-                                    new Chart("myChart", {
-                                        type: "doughnut",
-                                        data: {
-                                            labels: xValues,
-                                            datasets: [{
-                                                backgroundColor: barColors,
-                                                data: yValues
-                                            }]
-                                        },
-                                        options: {
-                                            title: {
-                                                display: true,
-                                                text: "Phân loại bệnh nhân"
-                                            }
-                                        }
-                                    });
-                                </script>
-                            </div>
+                        <div class="fixing-statis">
                         </div>
                     </div>
                 </div>
                 <div class="doctor statis">
                     Điều chuyển và thu hồi
-                    <div class="doctor dropbox"> <a class="doctor view all" asp-action="Staff"> View all > </a> </div>
+                    <div class="doctor dropbox"> 
+                        <a class="doctor view all" asp-action="Staff"> 
+                            View all > 
+                        </a> 
+                    </div>
                     <div class="upcoming-table">
-                        <table class="upcoming table">
-                            <tr>
-                                <td>
-                                    <div class="table-side-name">
-                                        Working
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <div class="table-up-name">
-                                        LÊ THỊ B
-                                    </div>
-                                    <div class="table-down-name">
-                                        Y tá
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-side-name">
-                                        Absent
-                                        <i class="fa-regular fa-circle"></i>
-                                    </div>
-                                    <div class="table-up-name">
-                                        NGUYỄN HOÀNG L
-                                    </div>
-                                    <div class="table-down-name">
-                                        Bác sĩ
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-side-name">
-                                        Available
-                                        <i class="fa-solid fa-circle"></i>
-                                    </div>
-                                    <div class="table-up-name">
-                                        NGUYỄN HOÀNG L
-                                    </div>
-                                    <div class="table-down-name">
-                                        Bác sĩ
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
