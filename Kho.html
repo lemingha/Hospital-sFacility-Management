@@ -64,7 +64,7 @@
         </nav>  
 
         <div class="group-container">
-
+            <!--nhóm 1-->
             <div class="store">
                 <section class="maintain-title" id="thongtin">
                     📦Thông tin thiết bị trong kho
@@ -76,7 +76,6 @@
                         <th>Tên thiết bị</th>
                         <th>Số lượng trong kho</th>
                         <th>Ngưỡng tối thiểu</th>
-                        <th>Điều chỉnh số lượng</th>
                         <th>Trạng thái tồn kho</th>
                     </tr>
                     </thead>
@@ -85,21 +84,18 @@
                         <td>Máy thở PHILIPS</td>
                         <td>12</td>
                         <td>5</td>
-                            <td><input type="number" class="adjust-input" value="0"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Bơm tiêm điện</td>
                         <td>3</td>
                         <td>5</td>
-                        <td><input type="number" class="adjust-input" value="0"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Monitor theo dõi</td>
                         <td>0</td>
                         <td>2</td>
-                        <td><input type="number" class="adjust-input" value="0"></td>
                         <td></td>
                     </tr>
                     </tbody>
@@ -108,16 +104,100 @@
                 <button class="submit-button" onclick="exportToExcel()">📥 Xuất Excel </button><br>
             </div>
 
+
+            <!--nhóm 2-->
             <div class="store">
                 <section class="maintain-title" id="xuatnhap">
                     🚛 Xuất nhập thiết bị giữa các kho
                 </section>
-                <h3></h3>
-                <ul class="function-list">
-                    <li>Ghi nhận thông tin thiết bị nhập kho</li>
-                    <li>Ghi nhận thông tin thiết bị xuất kho</li>
-                </ul>
-            </div>
+
+                <div class="container">
+                    <!-- Card 1: Xuất nhập thiết bị giữa các kho -->
+                    <div class="function-card">
+                    <ul>
+                        <li><button onclick="document.getElementById('importModal').style.display='flex'">Ghi nhận thiết bị nhập kho</button></li>
+                        <li><button onclick="document.getElementById('exportModal').style.display='flex'">Ghi nhận thiết bị xuất kho</button></li>
+                    </ul>
+                    </div>
+
+                    <!-- Modal for Import -->
+                    <div id="importModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="document.getElementById('importModal').style.display='none'">&times;</span>
+                        <h3>Ghi nhận thiết bị nhập kho</h3>
+                        <form>
+                        <div class="input-field">
+                            <label for="import-device-name">Tên thiết bị:</label>
+                            <input type="text" id="import-device-name" placeholder="Nhập tên thiết bị">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="import-device-id">Mã thiết bị:</label>
+                            <input type="text" id="import-device-id" placeholder="Nhập mã thiết bị">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="import-quantity">Số lượng nhập kho:</label>
+                            <input type="number" id="import-quantity" placeholder="Nhập số lượng">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="import-warehouse">Kho nhập:</label>
+                            <select id="import-warehouse">
+                            <option value="warehouse1">Kho 1</option>
+                            <option value="warehouse2">Kho 2</option>
+                            <option value="warehouse3">Kho 3</option>
+                            </select>
+                        </div><br>
+                        <div class="input-field">
+                            <label for="import-date">Ngày nhập kho:</label>
+                            <input type="date" id="import-date">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="import-receiver">Người nhận:</label>
+                            <input type="text" id="import-receiver" placeholder="Nhập người nhận thiết bị">
+                        </div><br>
+                        <button id="popup-button-reschedule" type="submit">Ghi nhận</button>
+                        </form>
+                    </div>
+                    </div>
+
+                    <!-- Modal for Export -->
+                    <div id="exportModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="document.getElementById('exportModal').style.display='none'">&times;</span>
+                        <h3 >Ghi nhận thiết bị xuất kho</h3>
+                        <form>
+                        <div class="input-field">
+                            <label for="export-device-name">Tên thiết bị:</label>
+                            <input type="text" id="export-device-name" placeholder="Nhập tên thiết bị">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="export-device-id">Mã thiết bị:</label>
+                            <input type="text" id="export-device-id" placeholder="Nhập mã thiết bị">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="export-quantity">Số lượng xuất kho:</label>
+                            <input type="number" id="export-quantity" placeholder="Nhập số lượng">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="export-warehouse">Kho xuất:</label>
+                            <select id="export-warehouse">
+                            <option value="warehouse1">Kho 1</option>
+                            <option value="warehouse2">Kho 2</option>
+                            <option value="warehouse3">Kho 3</option>
+                            </select>
+                        </div><br>
+                        <div class="input-field">
+                            <label for="export-date">Ngày xuất kho:</label>
+                            <input type="date" id="export-date">
+                        </div><br>
+                        <div class="input-field">
+                            <label for="export-receiver">Người nhận:</label>
+                            <input type="text" id="export-receiver" placeholder="Nhập người nhận thiết bị">
+                        </div><br>
+                        <button id="popup-button-reschedule" type="submit">Ghi nhận</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
             
                 <!-- Nhóm 3 -->
             <div class="store">
@@ -135,6 +215,15 @@
    
     </div>
     <script>
+
+        window.onclick = function(event) {
+        // Kiểm tra nếu người dùng bấm vào vùng ngoài modal (tức là phần nền mờ)
+        if (event.target === document.getElementById('exportModal') || 
+            event.target === document.getElementById('importModal') || 
+            event.target === document.getElementById('historyModal')) {
+            event.target.style.display = "none";
+        }
+        }
         // Tìm kiếm theo tên thiết bị
         document.getElementById("searchInput").addEventListener("keyup", function () {
           const filter = this.value.toUpperCase();
@@ -155,38 +244,6 @@
           const table = document.getElementById("deviceTable");
           const wb = XLSX.utils.table_to_book(table, { sheet: "Thiết bị" });
           XLSX.writeFile(wb, "thiet_bi_ton_kho.xlsx");
-        }
-      
-        // Lưu điều chỉnh số lượng và cập nhật trạng thái
-        function applyAdjustment() {
-          const rows = document.querySelectorAll("#deviceTable tbody tr");
-      
-          rows.forEach(row => {
-            const originalQtyCell = row.cells[1];
-            const originalQty = parseInt(originalQtyCell.textContent);
-            const threshold = parseInt(row.cells[2].textContent);
-            const adjustment = parseInt(row.querySelector(".adjust-input").value) || 0;
-            const newQty = originalQty + adjustment;
-      
-            // Cập nhật số lượng
-            originalQtyCell.textContent = newQty;
-      
-            // Cập nhật trạng thái tồn kho
-            const statusCell = row.cells[4];
-            if (newQty <= 0) {
-              statusCell.textContent = "⛔ Hết hàng";
-              statusCell.className = "status out";
-            } else if (newQty <= threshold) {
-              statusCell.textContent = "⚠️ Sắp hết";
-              statusCell.className = "status low";
-            } else {
-              statusCell.textContent = "✅ Còn nhiều";
-              statusCell.className = "status ok";
-            }
-      
-            // Reset ô điều chỉnh
-            row.querySelector(".adjust-input").value = 0;
-          });
         }
       
         // Tính trạng thái tồn kho ban đầu

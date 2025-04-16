@@ -772,7 +772,6 @@ input.patient-address {
 }
 .maintain-manage, .fixing-manage {
     flex: 1; /* Chia đều không gian */
-    border: 2px solid black; /* Viền đen */
     border-radius: 12px; /* Bo góc */
     padding: 1rem;
     text-align: center;
@@ -786,6 +785,13 @@ input.patient-address {
     flex-direction: column; /* Sắp xếp icon trên text */
     align-items: center; /* Căn giữa theo chiều ngang */
     justify-content: center; /* Căn giữa theo chiều dọc */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+}
+.maintain-manage:hover, .fixing-manage:hover{
+    transform: scale(1.01);
+
+
 }
 .maintain-manage i, .fixing-manage i {
     font-size: 3rem; /* Kích thước icon */
@@ -794,7 +800,7 @@ input.patient-address {
 .guide-box{
     margin-top: 10px;
     padding: 3rem;
-    border: 2px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
     border-radius: 10px;
     background-color: white;
     width: 80%;
@@ -909,14 +915,17 @@ input.patient-address {
   
   .modal-content {
     background: #fff;
-    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;     /* Căn giữa theo chiều ngang */
-    justify-content: center; /* Căn giữa theo chiều dọc */
-    height: 8rem;       /* Chiều cao tối thiểu để thấy hiệu quả */
+    align-items: center;    
+    justify-content: center; 
+    height: fit-content;      
     text-align: center;
   }
 
@@ -932,7 +941,7 @@ input.patient-address {
   }
   #popup-button-reschedule{
     color: black;
-    background-color: #f1f1f1;
+    background-color: #cbcbcb;
     font-size: 1rem;
     font-family: Lato;
     font-weight: 500;
@@ -945,24 +954,28 @@ input.patient-address {
     transform: scale(1.05);
   }
 
-.menu {
-    background-color: #f0f4f8; /* Màu nền của nav */
+  nav.menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Đảm bảo nổi trên các thành phần khác */
+    background-color: #f0f4f8;
     padding: 10px 20px;
     display: flex;
     justify-content: center;
-    gap: 10px; /* Khoảng cách giữa các <a> */
+    gap: 1rem;
     border-radius: 8px;
-    z-index: 1000; /* Đảm bảo nổi trên các thành phần khác */
-    position: sticky;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
 .menu a {
     background-color: white;
-    padding: 8px 16px;
+    padding: 8px 3rem;
     border-radius: 6px;
     text-decoration: none;
-    color: #003366;
-    font-weight: 500;
+    font-family: Lato;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #034078;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
@@ -1030,7 +1043,6 @@ input.patient-address {
   }
   .device-container {
     max-width: 800px;
-    margin: auto;
   }
 
   .device-card {
@@ -1135,3 +1147,73 @@ input.patient-address {
     margin-top: 1rem;
     padding-bottom: 1rem;
 }
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .function-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+
+  .function-card h3 {
+    font-size: 20px;
+    color: #007B9E;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .function-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .function-card li button {
+    background-color: #0095c8;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .function-card li button:hover {
+    transform: scale(1.05);
+    background-color: #007B9E;
+  }
+
+  /* Styling for modal */
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal h3{
+    color: #001F54;
+     margin-bottom: 1rem;
+     font-family: Lato;
+     font-weight: 800;
+  }
