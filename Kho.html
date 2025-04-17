@@ -100,7 +100,6 @@
                     </tr>
                     </tbody>
                 </table><br>
-                <button class="submit-button" onclick="applyAdjustment()">💾 Lưu điều chỉnh</button>
                 <button class="submit-button" onclick="exportToExcel()">📥 Xuất Excel </button><br>
             </div>
 
@@ -112,11 +111,13 @@
                 </section>
 
                 <div class="container">
-                    <!-- Card 1: Xuất nhập thiết bị giữa các kho -->
                     <div class="function-card">
+                        <h3>
+                            Yêu cầu xuất nhập kho
+                        </h3>
                     <ul>
                         <li><button onclick="document.getElementById('importModal').style.display='flex'">Ghi nhận thiết bị nhập kho</button></li>
-                        <li><button onclick="document.getElementById('exportModal').style.display='flex'">Ghi nhận thiết bị xuất kho</button></li>
+                        <li><button onclick="document.getElementById('exportModal').style.display='flex'" style="margin-bottom: 0rem !important;">Ghi nhận thiết bị xuất kho</button></li>
                     </ul>
                     </div>
 
@@ -197,20 +198,186 @@
                         </form>
                     </div>
                     </div>
+
+                    <!--Ghi nhận xuất nhập kho-->
+                    <div class="function-card">
+                        <h3>Lịch sử xuất nhập kho</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thiết bị</th>
+                                    <th>Xuất / Nhập kho </th>
+                                    <th>Số lượng</th>
+                                    <th>Vị trí đích</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Máy thở PHILIPS</td>
+                                    <td>Xuất kho</td>
+                                    <td>5</td>
+                                    <td>ICU</td>
+                                </tr>
+                                <tr>
+                                    <td>máy siêu âm doopler</td>
+                                    <td>Nhập kho</td>
+                                    <td>3</td>
+                                    <td>Kho 3</td>
+                                </tr>
+                                <tr>
+                                    <td>giường nâng hạ</td>
+                                    <td>Xuất kho</td>
+                                    <td>8</td>
+                                    <td>Khoa Cấp cứu</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+            </div>
             
-                <!-- Nhóm 3 -->
+            
+            <!-- Nhóm 3 -->
             <div class="store">
                 <section class="maintain-title" id="dieuchuyen">
-                    🔁 Điều chuyển và thu hồi
+                🔁 Điều chuyển và thu hồi
                 </section>
-                <ul class="function-list">
-                    <li>Tạo yêu cầu chuyển thiết bị</li>
-                    <li>Ghi nhận quá trình điều chuyển</li>
-                    <li>Quản lý thu hồi thiết bị</li>
-                </ul>
-            </div>
 
+                <div class="container">
+                    <div class="function-card">
+                        <h3>Yêu cầu điều chuyển & thu hồi</h3>
+                        <ul>
+                            <li>
+                                <button onclick="document.getElementById('transferModal').style.display='flex'">Tạo yêu cầu chuyển thiết bị</button>
+                            </li>
+                            <li>
+                                <button onclick="document.getElementById('revokeModal').style.display='flex'">Thu hồi thiết bị</button>
+                            </li>
+                        </ul>
+        
+                    </div>
+        
+                    <!-- Modal for Create Transfer Request -->
+                    <div id="transferModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="document.getElementById('transferModal').style.display='none'">&times;</span>
+                            <h3>Tạo yêu cầu chuyển thiết bị</h3>
+        
+                            <form>
+                                <div class="input-field">
+                                    <label for="device-name">Tên thiết bị:</label>
+                                    <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="source-warehouse">Kho nguồn:</label>
+                                    <select id="source-warehouse">
+                                        <option value="warehouse1">Kho 1</option>
+                                        <option value="warehouse2">Kho 2</option>
+                                        <option value="warehouse3">Kho 3</option>
+                                    </select>
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="destination-warehouse">Kho đích:</label>
+                                    <select id="destination-warehouse">
+                                        <option value="warehouse1">Kho 1</option>
+                                        <option value="warehouse2">Kho 2</option>
+                                        <option value="warehouse3">Kho 3</option>
+                                    </select>
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="transfer-date">Ngày điều chuyển:</label>
+                                    <input type="date" id="transfer-date">
+                                </div><br>
+                                <button type="submit">Gửi yêu cầu</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Revoke Request -->
+                    <div id="revokeModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="document.getElementById('revokeModal').style.display='none'">&times;</span>
+                            <h3>Tạo yêu cầu thu hồi thiết bị</h3>
+        
+                            <form>
+                                <div class="input-field">
+                                    <label for="device-name">Tên thiết bị:</label>
+                                    <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="source-warehouse">Vị trí hiện tại:</label>
+                                    <select id="source-warehouse">
+                                        <option value="warehouse1">Kho 1</option>
+                                        <option value="warehouse2">Kho 2</option>
+                                        <option value="warehouse3">Kho 3</option>
+                                    </select>
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="destination-warehouse">Thu hồi về:</label>
+                                    <select id="destination-warehouse">
+                                        <option value="warehouse1">Kho 1</option>
+                                        <option value="warehouse2">Kho 2</option>
+                                        <option value="warehouse3">Kho 3</option>
+                                    </select>
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
+                                </div><br>
+        
+                                <div class="input-field">
+                                    <label for="transfer-date">Ngày Thu hồi:</label>
+                                    <input type="date" id="transfer-date">
+                                </div><br>
+                                <button type="submit">Gửi yêu cầu</button>
+                            </form>
+                        </div>
+                        </div>
+
+                    <!-- Ghi nhận quá trình điều chuyển -->
+                    <div class="function-card">
+                        <h3>Lịch sử điều chuyển</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thiết bị</th>
+                                    <th>Kho nguồn</th>
+                                    <th>Kho đích</th>
+                                    <th>Số lượng</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Máy thở PHILIPS</td>
+                                    <td>Kho 1</td>
+                                    <td>Kho 2</td>
+                                    <td>5</td>
+                                    <td>Đang chuyển</td>
+                                </tr>
+                                <tr>
+                                    <td>Bơm tiêm điện</td>
+                                    <td>Kho 2</td>
+                                    <td>Kho 3</td>
+                                    <td>3</td>
+                                    <td>Hoàn thành</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+            </div>
         </div> 
    
     </div>
@@ -219,8 +386,10 @@
         window.onclick = function(event) {
         // Kiểm tra nếu người dùng bấm vào vùng ngoài modal (tức là phần nền mờ)
         if (event.target === document.getElementById('exportModal') || 
-            event.target === document.getElementById('importModal') || 
-            event.target === document.getElementById('historyModal')) {
+            event.target === document.getElementById('importModal') ||
+            event.target === document.getElementById('transferModal') ||
+            event.target === document.getElementById('revokeModal')
+        ) {
             event.target.style.display = "none";
         }
         }
@@ -247,26 +416,27 @@
         }
       
         // Tính trạng thái tồn kho ban đầu
-        window.addEventListener("DOMContentLoaded", () => {
-          const rows = document.querySelectorAll("#deviceTable tbody tr");
-      
-          rows.forEach(row => {
-            const quantity = parseInt(row.cells[1].textContent);
-            const threshold = parseInt(row.cells[2].textContent);
-            const statusCell = row.cells[4]; // fix đúng cột trạng thái
-      
-            if (quantity === 0) {
-              statusCell.textContent = "⛔ Hết hàng";
-              statusCell.className = "status out";
-            } else if (quantity <= threshold) {
-              statusCell.textContent = "⚠️ Sắp hết";
-              statusCell.className = "status low";
-            } else {
-              statusCell.textContent = "✅ Còn nhiều";
-              statusCell.className = "status ok";
-            }
-          });
-        });
+            window.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("#deviceTable tbody tr");
+
+            rows.forEach(row => {
+                const quantity = parseInt(row.cells[1].textContent);  // Số lượng trong kho (cột 2)
+                const threshold = parseInt(row.cells[2].textContent); // Ngưỡng tối thiểu (cột 3)
+                const statusCell = row.cells[3]; // Cột trạng thái tồn kho (cột 4)
+
+                // Kiểm tra số lượng và cập nhật trạng thái tồn kho
+                if (quantity === 0) {
+                statusCell.textContent = "⛔ Hết hàng";
+                statusCell.className = "status out";  // Bạn có thể định kiểu CSS cho trạng thái "out"
+                } else if (quantity <= threshold) {
+                statusCell.textContent = "⚠️ Sắp hết";
+                statusCell.className = "status low";  // Định kiểu CSS cho trạng thái "low"
+                } else {
+                statusCell.textContent = "✅ Còn nhiều";
+                statusCell.className = "status ok";  // Định kiểu CSS cho trạng thái "ok"
+                }
+            });
+            });
     </script>
 
     

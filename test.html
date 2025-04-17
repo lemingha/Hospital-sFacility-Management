@@ -1,178 +1,291 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý kho thiết bị</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f9;
-      margin: 0;
-      padding: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều chuyển và Thu hồi thiết bị</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+        }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
+        /* Thanh điều hướng bên trái */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #003b5c;
+            padding-top: 20px;
+            color: #fff;
+        }
 
-    .function-card {
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      border-radius: 16px;
-      padding: 24px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
 
-    .function-card h3 {
-      font-size: 20px;
-      color: #007B9E;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .sidebar a:hover {
+            background-color: #007B9E;
+        }
 
-    .function-card ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        /* Content section */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
 
-    .function-card li button {
-      background-color: #0095c8;
-      color: white;
-      border: none;
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      width: 100%;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
+        /* Cards for each function */
+        .function-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-    .function-card li button:hover {
-      transform: scale(1.05);
-      background-color: #007B9E;
-    }
+        .function-card h3 {
+            color: #007B9E;
+            font-size: 22px;
+        }
 
-    /* Styling for modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-      padding-top: 60px;
-    }
+        button {
+            background-color: #0095c8;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-    .modal-content {
-      background-color: #ffffff;
-      margin: 5% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 10px;
-    }
+        button:hover {
+            background-color: #007B9E;
+        }
 
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 500px;
+        }
 
-    .input-field {
-      margin-bottom: 16px;
-      width: 100%;
-    }
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
 
-    .input-field select, .input-field input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-  </style>
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            height: 100px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007B9E;
+            color: white;
+        }
+
+        input[type="search"] {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-  <h2 style="text-align: center; color: #003b5c; margin-bottom: 30px;">Quản lý kho thiết bị y tế</h2>
 
-  <div class="container">
-    <!-- Card 1: Xuất nhập thiết bị giữa các kho -->
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+    <h2 style="text-align: center; color: white;">Hệ thống quản lý</h2>
+    <a href="#">Tổng quan</a>
+    <a href="#">Thiết bị</a>
+    <a href="#">Bảo trì - sửa chữa</a>
+    <a href="#">Kho - chuyển thiết bị</a>
+    <a href="#">Tài chính - Hợp đồng</a>
+    <a href="#">Phụ lục - Tra cứu mã</a>
+</div>
+
+<!-- Content Section -->
+<div class="content">
+    <h2>Điều chuyển và Thu hồi thiết bị</h2>
+
+    <!-- Tạo yêu cầu chuyển thiết bị -->
     <div class="function-card">
-      <h3><i class="fa-solid fa-truck"></i> Xuất nhập thiết bị giữa các kho</h3>
-      <ul>
-        <li><button onclick="document.getElementById('importModal').style.display='block'">Ghi nhận thiết bị nhập kho</button></li>
-        <li><button onclick="document.getElementById('exportModal').style.display='block'">Ghi nhận thiết bị xuất kho</button></li> 
-      </ul>
+        <h3>Yêu cầu điều chuyển & thu hồi</h3>
+        <button onclick="document.getElementById('transferModal').style.display='flex'">Tạo yêu cầu chuyển thiết bị</button>
+        <button>Thu hồi thiết bị</button>
     </div>
 
-    <!-- Modal for Import -->
-    <div id="importModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="document.getElementById('importModal').style.display='none'">&times;</span>
-        <h3>Ghi nhận thiết bị nhập kho</h3>
-        <form>
-          <div class="input-field">
-            <label for="import-device-name">Tên thiết bị:</label>
-            <input type="text" id="import-device-name" placeholder="Nhập tên thiết bị">
-          </div>
-          <div class="input-field">
-            <label for="import-device-id">Mã thiết bị:</label>
-            <input type="text" id="import-device-id" placeholder="Nhập mã thiết bị">
-          </div>
-          <div class="input-field">
-            <label for="import-quantity">Số lượng nhập kho:</label>
-            <input type="number" id="import-quantity" placeholder="Nhập số lượng">
-          </div>
-          <div class="input-field">
-            <label for="import-warehouse">Kho nhập:</label>
-            <select id="import-warehouse">
-              <option value="warehouse1">Kho 1</option>
-              <option value="warehouse2">Kho 2</option>
-              <option value="warehouse3">Kho 3</option>
-            </select>
-          </div>
-          <div class="input-field">
-            <label for="import-date">Ngày nhập kho:</label>
-            <input type="date" id="import-date">
-          </div>
-          <div class="input-field">
-            <label for="import-receiver">Người nhận:</label>
-            <input type="text" id="import-receiver" placeholder="Nhập người nhận thiết bị">
-          </div>
-          <button type="submit">Ghi nhận</button>
-        </form>
-      </div>
+    <!-- Ghi nhận quá trình điều chuyển -->
+    <div class="function-card">
+        <h3>Ghi nhận quá trình điều chuyển</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Thiết bị</th>
+                    <th>Kho nguồn</th>
+                    <th>Kho đích</th>
+                    <th>Số lượng</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Máy thở PHILIPS</td>
+                    <td>Kho 1</td>
+                    <td>Kho 2</td>
+                    <td>5</td>
+                    <td>Đang chuyển</td>
+                </tr>
+                <tr>
+                    <td>Bơm tiêm điện</td>
+                    <td>Kho 2</td>
+                    <td>Kho 3</td>
+                    <td>3</td>
+                    <td>Hoàn thành</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  <script>
-    // Đóng modal khi mở ra ngoài
-    window.onclick = function(event) {
-      if (event.target == document.getElementById('importModal') || event.target == document.getElementById('exportModal')) {
-        event.target.style.display = "none";
-      }
+</div>
+
+<!-- Modal for Create Transfer Request -->
+<div id="transferModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('transferModal').style.display='flex'">&times;</span>
+        <h3>Tạo yêu cầu chuyển thiết bị</h3>
+
+        <form>
+            <div class="input-field">
+                <label for="device-name">Tên thiết bị:</label>
+                <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
+            </div>
+
+            <div class="input-field">
+                <label for="source-warehouse">Kho nguồn:</label>
+                <select id="source-warehouse">
+                    <option value="warehouse1">Kho 1</option>
+                    <option value="warehouse2">Kho 2</option>
+                    <option value="warehouse3">Kho 3</option>
+                </select>
+            </div>
+
+            <div class="input-field">
+                <label for="destination-warehouse">Kho đích:</label>
+                <select id="destination-warehouse">
+                    <option value="warehouse1">Kho 1</option>
+                    <option value="warehouse2">Kho 2</option>
+                    <option value="warehouse3">Kho 3</option>
+                </select>
+            </div>
+
+            <div class="input-field">
+                <label for="quantity">Số lượng:</label>
+                <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
+            </div>
+
+            <div class="input-field">
+                <label for="transfer-date">Ngày điều chuyển:</label>
+                <input type="date" id="transfer-date">
+            </div>
+
+            <div class="input-field">
+                <label for="notes">Ghi chú:</label>
+                <textarea id="notes" placeholder="Ghi chú thêm nếu cần"></textarea>
+            </div>
+
+            <button type="submit">Gửi yêu cầu</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('transferModal').style.display = 'flex';
     }
-  </script>
+
+        // Modal handling
+    window.onload = function() {
+        document.getElementById('transferModal').style.display = 'none'; // Đảm bảo modal ẩn khi tải trang
+    };
+
+    window.onclick = function(event) {
+        // Kiểm tra nếu người dùng bấm ngoài modal để đóng modal
+        if (event.target == document.getElementById('transferModal')) {
+            document.getElementById('transferModal').style.display = "none";
+        }
+    }
+
+</script>
+
 </body>
 </html>

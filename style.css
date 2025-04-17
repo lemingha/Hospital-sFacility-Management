@@ -981,7 +981,7 @@ input.patient-address {
   }
   
 .menu a:hover {
-    background-color: #e0eaf5;
+    background-color: #c8ddf4;
     color: #001F54;
   }
 
@@ -1149,51 +1149,59 @@ input.patient-address {
 }
 .container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+    flex-direction: column; /* Xếp các phần tử con theo chiều dọc */
+    gap: 0.5px; /* Khoảng cách giữa các phần tử */
+
   }
 
   .function-card {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 16px;
-    padding: 24px;
-    width: 100%;
-    max-width: 400px;
+    padding: 1rem;
+    margin: 0.5rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     transition: transform 0.2s ease;
   }
 
   .function-card h3 {
-    font-size: 20px;
+    font-size: 1.2rem;
+    font-family: Lato;
+    font-weight: 600;
     color: #007B9E;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    text-transform: none;
   }
 
   .function-card ul {
+    display: flex;
     list-style-type: none;
     padding: 0;
   }
-
+.function-card li{
+    display: flex;
+    gap: 1rem;
+}
   .function-card li button {
-    background-color: #0095c8;
+    background-color: #034078;
+    font-family: Lato;
+    font-size: 1rem;
     color: white;
     border: none;
-    padding: 12px 16px;
-    margin-bottom: 12px;
+    padding: 1rem;
     border-radius: 10px;
-    width: 100%;
-    font-size: 16px;
     cursor: pointer;
     transition: transform 0.2s ease;
+  }
+  .function-card li button :last-child{
+    margin-bottom: 0rem;
   }
 
   .function-card li button:hover {
     transform: scale(1.05);
-    background-color: #007B9E;
+    background-color: #1282A2;
   }
 
   /* Styling for modal */
