@@ -1,291 +1,192 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Điều chuyển và Thu hồi thiết bị</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f9;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lí Hợp đồng</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
 
-        /* Thanh điều hướng bên trái */
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #003b5c;
-            padding-top: 20px;
-            color: #fff;
-        }
+.contract-manager {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-        .sidebar a {
-            padding: 15px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #fff;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
-        .sidebar a:hover {
-            background-color: #007B9E;
-        }
+.controls input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 8px;
+}
 
-        /* Content section */
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
+.controls button {
+  padding: 8px 12px;
+}
 
-        /* Cards for each function */
-        .function-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
 
-        .function-card h3 {
-            color: #007B9E;
-            font-size: 22px;
-        }
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
 
-        button {
-            background-color: #0095c8;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+th {
+  background: #eee;
+  text-align: left;
+}
 
-        button:hover {
-            background-color: #007B9E;
-        }
+.modal.hidden {
+  display: none;
+}
 
-        /* Modal styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        .modal-content {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 500px;
-        }
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  width: 400px;
+}
 
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+  </style>
 
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 10px;
-            height: 100px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        /* Table styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007B9E;
-            color: white;
-        }
-
-        input[type="search"] {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-    </style>
 </head>
 <body>
-
-<!-- Sidebar Navigation -->
-<div class="sidebar">
-    <h2 style="text-align: center; color: white;">Hệ thống quản lý</h2>
-    <a href="#">Tổng quan</a>
-    <a href="#">Thiết bị</a>
-    <a href="#">Bảo trì - sửa chữa</a>
-    <a href="#">Kho - chuyển thiết bị</a>
-    <a href="#">Tài chính - Hợp đồng</a>
-    <a href="#">Phụ lục - Tra cứu mã</a>
-</div>
-
-<!-- Content Section -->
-<div class="content">
-    <h2>Điều chuyển và Thu hồi thiết bị</h2>
-
-    <!-- Tạo yêu cầu chuyển thiết bị -->
-    <div class="function-card">
-        <h3>Yêu cầu điều chuyển & thu hồi</h3>
-        <button onclick="document.getElementById('transferModal').style.display='flex'">Tạo yêu cầu chuyển thiết bị</button>
-        <button>Thu hồi thiết bị</button>
+  <div class="contract-manager">
+    <h1>📄 Quản lí Giấy tờ - Hợp đồng</h1>
+    
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm theo tên hợp đồng..." />
+      <button onclick="openContractForm()">➕ Thêm Hợp đồng</button>
     </div>
 
-    <!-- Ghi nhận quá trình điều chuyển -->
-    <div class="function-card">
-        <h3>Ghi nhận quá trình điều chuyển</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Thiết bị</th>
-                    <th>Kho nguồn</th>
-                    <th>Kho đích</th>
-                    <th>Số lượng</th>
-                    <th>Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Máy thở PHILIPS</td>
-                    <td>Kho 1</td>
-                    <td>Kho 2</td>
-                    <td>5</td>
-                    <td>Đang chuyển</td>
-                </tr>
-                <tr>
-                    <td>Bơm tiêm điện</td>
-                    <td>Kho 2</td>
-                    <td>Kho 3</td>
-                    <td>3</td>
-                    <td>Hoàn thành</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <table id="contractsTable">
+      <thead>
+        <tr>
+          <th>Tên Hợp đồng</th>
+          <th>Đối tác</th>
+          <th>Ngày ký</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Hợp đồng sẽ được render ở đây bằng JS -->
+      </tbody>
+    </table>
+  </div>
 
-<!-- Modal for Create Transfer Request -->
-<div id="transferModal" class="modal">
+  <!-- Form thêm/sửa hợp đồng -->
+  <div id="contractFormModal" class="modal hidden">
     <div class="modal-content">
-        <span class="close" onclick="document.getElementById('transferModal').style.display='flex'">&times;</span>
-        <h3>Tạo yêu cầu chuyển thiết bị</h3>
-
-        <form>
-            <div class="input-field">
-                <label for="device-name">Tên thiết bị:</label>
-                <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
-            </div>
-
-            <div class="input-field">
-                <label for="source-warehouse">Kho nguồn:</label>
-                <select id="source-warehouse">
-                    <option value="warehouse1">Kho 1</option>
-                    <option value="warehouse2">Kho 2</option>
-                    <option value="warehouse3">Kho 3</option>
-                </select>
-            </div>
-
-            <div class="input-field">
-                <label for="destination-warehouse">Kho đích:</label>
-                <select id="destination-warehouse">
-                    <option value="warehouse1">Kho 1</option>
-                    <option value="warehouse2">Kho 2</option>
-                    <option value="warehouse3">Kho 3</option>
-                </select>
-            </div>
-
-            <div class="input-field">
-                <label for="quantity">Số lượng:</label>
-                <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
-            </div>
-
-            <div class="input-field">
-                <label for="transfer-date">Ngày điều chuyển:</label>
-                <input type="date" id="transfer-date">
-            </div>
-
-            <div class="input-field">
-                <label for="notes">Ghi chú:</label>
-                <textarea id="notes" placeholder="Ghi chú thêm nếu cần"></textarea>
-            </div>
-
-            <button type="submit">Gửi yêu cầu</button>
-        </form>
+      <span class="close" onclick="closeContractForm()">&times;</span>
+      <h2>📝 Thông tin Hợp đồng</h2>
+      <form id="contractForm">
+        <label>Tên hợp đồng: <input type="text" name="name" required /></label>
+        <label>Đối tác: <input type="text" name="partner" required /></label>
+        <label>Ngày ký: <input type="date" name="date" required /></label>
+        <label>Trạng thái:
+          <select name="status">
+            <option>Hiệu lực</option>
+            <option>Hết hạn</option>
+            <option>Huỷ</option>
+          </select>
+        </label>
+        <button type="submit">💾 Lưu</button>
+      </form>
     </div>
-</div>
+  </div>
 
-<script>
-    function openModal() {
-        document.getElementById('transferModal').style.display = 'flex';
-    }
+  <script>
+const tableBody = document.querySelector("#contractsTable tbody");
+const modal = document.getElementById("contractFormModal");
+const form = document.getElementById("contractForm");
+let contracts = [];
 
-        // Modal handling
-    window.onload = function() {
-        document.getElementById('transferModal').style.display = 'none'; // Đảm bảo modal ẩn khi tải trang
-    };
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  const contract = {
+    name: data.get("name"),
+    partner: data.get("partner"),
+    date: data.get("date"),
+    status: data.get("status")
+  };
+  contracts.push(contract);
+  renderContracts();
+  closeContractForm();
+  form.reset();
+});
 
-    window.onclick = function(event) {
-        // Kiểm tra nếu người dùng bấm ngoài modal để đóng modal
-        if (event.target == document.getElementById('transferModal')) {
-            document.getElementById('transferModal').style.display = "none";
-        }
-    }
+function openContractForm() {
+  modal.classList.remove("hidden");
+}
 
-</script>
+function closeContractForm() {
+  modal.classList.add("hidden");
+}
 
+function renderContracts() {
+  tableBody.innerHTML = "";
+  contracts.forEach((contract, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${contract.name}</td>
+      <td>${contract.partner}</td>
+      <td>${contract.date}</td>
+      <td>${contract.status}</td>
+      <td><button onclick="deleteContract(${index})">🗑 Xoá</button></td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function deleteContract(index) {
+  contracts.splice(index, 1);
+  renderContracts();
+}
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const keyword = this.value.toLowerCase();
+  const rows = tableBody.querySelectorAll("tr");
+  rows.forEach(row => {
+    const name = row.children[0].textContent.toLowerCase();
+    row.style.display = name.includes(keyword) ? "" : "none";
+  });
+});
+  </script>
 </body>
 </html>

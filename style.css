@@ -229,20 +229,6 @@ body {
     float: left;
     padding-top: 1.5rem;
 }
-
-input#finace {
-    float: right;
-    display: inline;
-    font-size: 0.8rem;
-    padding: 4px;
-}
-
-input#patient {
-    float: inline-end;
-    display: inline;
-    font-size: 0.8rem;
-    padding: 4px;
-}
 .box{
     height: 15rem;
     margin-bottom: 2.5rem;
@@ -409,12 +395,22 @@ p {
 .dropdown:hover .dropbtn {
     background-color: #118AB2;
 }
+.searchingpatient {
+  color: white;
+  border: 0px;
+  font-size: 1.1rem;
+  font-family: lato; 
+  padding: 0.5rem 1rem;
+  background-color: #1282A2;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
 .searchingpatient:hover {
     transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
 }
 /* Style for search input */
-#searchInput {
+#searchInput, #searchInputhopdong, #searchInputInsuracnce {
     margin-bottom: 10px;
     padding: 8px;
     width: 16rem;
@@ -673,91 +669,6 @@ select {
     height: fit-content;
 }
 
-.medicalrecord.patient-dateofbirth {
-    float: left;
-    margin-top: 1.5rem;
-    width: 25rem;
-}
-
-.medicalrecord.patient-sex {
-    float: left;
-    ;
-    margin-top: 1.5rem;
-    width: 15rem;
-}
-
-.medicalrecord.patient-ID {
-    width: 25rem;
-    margin-top: 1.5rem;
-}
-
-.medicalrecord.patient-ID {
-    width: fit-content;
-    margin-top: 1.5rem;
-    float: left;
-    display: inline;
-    margin-left: 1rem;
-}
-
-.medicalrecord.patient-number {
-    margin-top: 1.5rem;
-    width: fit-content;
-    float: left;
-    display: inline;
-}
-
-input.patient-address {
-    width: 43rem;
-}
-
-.medicalrecord.symptom {
-    margin-top: 1.5rem;
-    float: left;
-    width: fit-content;
-}
-
-.medicalrecord.disease {
-    margin-top: 1.5rem;
-    margin-left: 1rem;
-    float: left;
-    width: fit-content;
-}
-
-.medicalrecord-filling-form.p2 {
-    height: 22rem;
-}
-
-.medicalrecord-filling-form.p1 {
-    height: 29rem;
-}
-
-.submit-reset-button {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.medicalrecord.timein {
-    margin-top: 1.5rem;
-}
-
-.medicalrecord.timeout {
-    margin-top: 1.5rem;
-}
-
-.medicalrecord.hospitalfee {
-    margin-top: 1.5rem;
-}
-/* nhân viên thêm */
-.medicalrecord-filling-form.p3 {
-    height: 25rem;
-}
-
-.staff.salary {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
 
 /*tiếp tục*/
 .maintain-fixing{
@@ -810,7 +721,7 @@ input.patient-address {
     display: flex;
 }
 .maintain-title{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
     font-family: Lato;
@@ -966,8 +877,24 @@ input.patient-address {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-  
+
 .menu a {
+  font-size: 1rem ;
+  background-color: white;
+  padding: 8px 3rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: Lato;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #034078;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .menu button{
+    font-size: 1rem;
+    border: 0px;
     background-color: white;
     padding: 8px 3rem;
     border-radius: 6px;
@@ -978,12 +905,17 @@ input.patient-address {
     color: #034078;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
   }
-  
 .menu a:hover {
     background-color: #c8ddf4;
     color: #001F54;
   }
+
+.menu button:hover{
+  background-color: #c8ddf4;
+    color: #001F54;
+}
 
   /* Phần nội dung */
   section {
@@ -1143,6 +1075,7 @@ input.patient-address {
      margin-right: 0.5rem;
 }
 .store{
+    width: 100%;
     border-bottom: 1px solid #89A8B2;
     margin-top: 1rem;
     padding-bottom: 1rem;
@@ -1224,4 +1157,173 @@ input.patient-address {
      margin-bottom: 1rem;
      font-family: Lato;
      font-weight: 800;
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  select, button {
+    padding: 5px 10px;
+  }
+  .summary {
+    font-family: Lato;
+    font-size: 1rem;
+    color: #b71c1c;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .card {
+    background: white;
+    padding: 15px;
+    border-left: 5px solid #0077b6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .card h3 {
+    margin: 0 0 10px;
+    color: #023e8a;
+  }
+  .store .chart{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+  
+  }
+  .store .chart-placeholder {
+    height: 20rem;
+    width: 47.5%;
+    background: #dbeefc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    border-radius: 8px;
+    color: #0077b6;
+    padding: 10px; /* Thêm khoảng cách bên trong nếu cần */
+    text-align: center; /* Căn giữa nội dung */
+    border: 1px solid #ccc;
+  }
+
+  .chart-placeholder h3 {
+    color: #034078;
+    font-family:'Times New Roman';
+  }
+
+  @media (max-width: 50rem) {
+    .store .chart {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .store .chart-placeholder {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto;
+    }
+  }
+
+  /*phần này lỏ*/
+  .card-group {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+  }
+
+  .card-group h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #1f3c88;
+    font-family: lato;
+    font-weight: 800;
+  }
+
+  .card-group .total {
+    font-size: 0.95rem;
+    color: #fc6161;
+    margin-bottom: 1rem;
+    font-family: lato;
+    font-weight: 500;
+  }
+
+  .card-group .device-card {
+    display: flex;
+    padding: 0;
+    background-color: #e9f3fd;
+    position: relative; /* Thêm thuộc tính position để chứa phần tử absolute */
+  }
+  .device-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+  }
+  .device-main {
+    display: flex;
+    flex-direction: column;
+  } 
+
+  .device-label {
+    font-size: 17px;
+    color: #0d3b66;
+    margin-bottom: 4px;
+  }
+  
+  .device-meta {
+    font-size: 14px;
+    color: #444;
+    display: flex;
+    gap: 24px;
+  }
+  
+  .edit-btn {
+    background-color: #0069cb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: absolute; /* Đặt nút vào vị trí tuyệt đối */
+    bottom: 0.7rem; /* Lùi nút xuống dưới cùng */
+    right: 1rem; /* Căn nút về góc phải */
+  }
+  
+  .edit-btn:hover {
+    background-color: #118AB2;
+    transform: scale(1.05);
+  }
+.btn-cards-group-action{
+    display: flex;
+    float: inline-end;
+}
+  .btn-cards-group-action button {
+    background-color: #007ff6;
+    color: #fff;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-cards-group-action button:hover {
+    background-color:#007B9E;
+    transform: scale(1.05);
   }
