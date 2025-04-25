@@ -338,27 +338,19 @@ p {
 }
 
 .dropbtn {
-    background-color: #001F54;
-    color: white;
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-family: lato;
-    border: none;
-    border-radius: 12px;
-    width: 12rem;
-    height: 3.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #001F54;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-family: lato;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.dropbtn-icon {
-    width: fit-content;
-    float: inline-end;
-    font-size: 1.7rem;
-    margin-left: 0.7rem;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -406,6 +398,10 @@ p {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+
+option{
+  text-transform: uppercase;
+}
 .searchingpatient:hover {
     transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
 }
@@ -518,6 +514,7 @@ td#tinhtrangphong {
 }
 
 label {
+    align-content: center;
     background-color: #001F54;
     font-family: Lato;
     font-weight: 600;
@@ -527,9 +524,12 @@ label {
     border-radius: 8px;
 }
 .form-group {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 15px;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 input, textarea {
     font-family: Lato;
@@ -549,11 +549,15 @@ select {
 }
 /* Chi tiết các ô input */
 .form-group-title{
-    font-size: 1.2rem;
-    padding-bottom: 0.5rem;
-    font-family: Lato;
-    font-weight: 700;
-    color: #1282A2;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;  
+  font-size: 1.3rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  font-family: Lato;
+  font-weight: bold;
+  color: #1282A2;
 }
 
 #patient-name {
@@ -582,11 +586,6 @@ select {
 
 #medicalrecordLink {
     width: 20rem;
-}
-
-.fa-solid.fa-paperclip {
-    font-size: 1.5rem;
-    color: #EF476F
 }
 /* nút lưu tìm kiếm làm lại */
 .submit-button {
@@ -822,23 +821,40 @@ select {
     z-index: 1000;
     align-items: center;
     justify-content: center;
+    pointer-events: auto; /* Đảm bảo nhận sự kiện click */;
 }
   
-  .modal-content {
-    background: #fff;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+.modal-content {
+  background: #fff;
+  padding: 1rem 2rem 2rem 2rem ;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;
+  text-align: center;
+  max-height: 80%; /* Giới hạn chiều cao tối đa */
+  min-width: 300px; /* Đặt độ rộng tối thiểu */
+}
+
+  .modal-header {
     display: flex;
     flex-direction: column;
-    align-items: center;    
-    justify-content: center; 
-    height: fit-content;      
-    text-align: center;
-  }
+    justify-content: space-between;
+    align-items: center;
+    font-size: larger;
+}
+
+.modal-header .close {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    overflow-y: auto;
+    flex-grow: 1;
+}
 
   @keyframes popupFade {
     from {
@@ -962,7 +978,7 @@ select {
     font-family: Lato;
     color: white;
     border: none;
-    padding: 0.75rem 3rem;
+    padding: 0.6rem 3rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 8px;
@@ -1154,18 +1170,16 @@ select {
   }
   .modal h3{
     color: #001F54;
-     margin-bottom: 1rem;
-     font-family: Lato;
-     font-weight: 800;
+    margin-bottom: 1rem;
+    font-family: Lato;
+    font-weight: 1000;
+    font-size: 1.5rem;
   }
 
   .filters {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
-  }
-  select, button {
-    padding: 5px 10px;
   }
   .summary {
     font-family: Lato;

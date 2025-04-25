@@ -52,36 +52,28 @@
                 <div class="surgery-title">
                     THIẾT BỊ
                 </div>
-                <div class="surgery-major-button">
-                    <!-- nghiệp vụ -->
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            NGHIỆP VỤ
-                            <div class="dropbtn-icon"><i class="fa-solid fa-user-tie"></i></div>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="Thietbi-them.html">
-                                <i class="fa-solid fa-circle-plus"></i>
-                                Thêm Thiết bị
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="surgery-table">
                 <table id="surgery-table">
                     <div class="wrap-sreach">
-                                <input name="searchString" class="search" style="width: 21rem;" type="text" placeholder="🔍Tìm kiếm">
-                                <select name="searchField" style="width: 13rem; padding: 0.5rem;" id="searchField">
-                                    <option value="giuong-benh">Giường bệnh</option>
-                                    <option value="may-moc">Máy móc</option>
-                                    <option value="tu">Tủ</option>
-                                    <option value="thuoc">Thuốc</option>
-                                </select>
-                                <button class="searchingpatient" type="submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    Tìm Kiếm
+                        <input name="searchString" id="searchInput" style="width: 21rem; margin-bottom: 0rem;" type="text" placeholder="🔍Tìm kiếm tên thiết bị">
+                        <select name="statusFilter" style="width: 13rem; padding: 0.5rem;" id="statusFilter">
+                            <option value="">TẤT CẢ</option>    
+                            <option value="MUA MỚI">Mua Mới</option>
+                            <option value="HOẠT ĐỘNG">Hoạt động</option>
+                            <option value="BẢO TRÌ">Bảo trì</option>
+                            <option value="SỬA CHỮA">Sửa chữa</option>
+                            <option value="DỪNG SỬ DỤNG - THANH LÝ">Dừng sử dụng - Thanh lý</option>
+                        </select>
+                        <div class="surgery-major-button">
+                            <!-- nghiệp vụ -->
+                            <div class="dropdown">
+                                <button class="dropbtn" onclick="document.getElementById('deviceAddModal').style.display='flex'">
+                                    <i class="fa-solid fa-square-plus" style="margin-right: 0.5rem;"></i>
+                                    Thêm thiết bị
                                 </button>
+                            </div>
+                        </div>
                     </div>
                     <table id="dataTable" style="width:100%;">
                         <thead>
@@ -90,7 +82,7 @@
                                 <th>Vị trí hiện tại</th>
                                 <th>Ngày nhập kho</th>
                                 <th>Ngày xuất kho</th>
-                                <th>Loại</th>
+                                <th>Trạng thái hiện tại</th>
                                 <th>Chi tiết</th>
                                 <th>Xóa</th>
                             </tr>
@@ -101,13 +93,30 @@
                                 <td id="facility"> Khoa Hồi sức tích cực </td>
                                 <td id="facility"> 12/3/2024</td>
                                 <td id="facility"> 2/3/2025 </td >
-                                <td id="facility"> VENT-DT-ICU-2024-ACT </td>
+                                <td id="facility"> Hoạt động </td>
                                 <td id="detail">
-                                    <a href="Thietbi-chitiet.html">
-                                        <button id="detail">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                        </button>
-                                    </a>
+                                    <button id="detail">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </button>
+                                </td>
+                                <td id="delete">
+                                    <button type="button" id="deleteBtn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td id="facility"> Máy siêu âm Doopler </td>
+                                <td id="facility"> Khoa Sản </td>
+                                <td id="facility"> 24/4/2024</td>
+                                <td id="facility"> N/A </td >
+                                <td id="facility"> Bảo trì </td>
+                                <td id="detail">
+                                    <button id="detail">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </button>
                                 </td>
                                 <td id="delete">
                                     <button type="button" id="deleteBtn">
@@ -120,7 +129,7 @@
                 </table>
             </div>
         </div>
-
+        <!--modal xóa thiết bị-->
         <div id="confirmModal" class="modal">
             <div class="modal-content">
                 <p style="text-align: center; font-family: Lato; color: #001F54; font-size: 1.2rem; font-weight: 800; text-transform: uppercase;">Bạn có chắc chắn muốn xóa thiết bị này không?</p><br>
@@ -130,27 +139,221 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Chi tiết thiết bị -->
+        <div id="deviceDetailModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="document.getElementById('deviceDetailModal').style.display='none'">&times;</span>
+                <h3>Chi tiết thiết bị</h3>
+                <div id="deviceDetailContent">
+                    <div class="form-group">
+                        <div>
+                            <label for="deviceName">Tên thiết bị:</label>
+                            <input type="text" id="deviceName" name="deviceName" value="Máy thở Philip" required>
+                        </div>
+                        <div>
+                            <label for="manufacturer">Tên nhà sản xuất:</label>
+                            <input type="text" id="manufacturer" name="manufacturer" value="Philip" required>
+                        </div>
+                        
+                        <div>
+                            <label for="manufacturer">Mã sản phẩm:</label>
+                        <input type="text" id="deviceCode" name="manufacturer" value="3834578" required>
+                        </div>
+                    </div>
+                    <div class="form-group-title">
+                        Tình trạng - Vị trí
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="deviceCategory">Tình trạng hoạt động:</label>
+                            <select id="deviceCategory" name="deviceCategory" required>
+                                <option value="">TẤT CẢ</option>
+                                <option value="HOẠT ĐỘNG">HOẠT ĐỘNG</option>
+                                <option value="BẢO TRÌ">BẢO TRÌ</option>
+                                <option value="SỬA CHỮA">SỬA CHỮA</option>
+                                <option value="LƯU TRỮ">LƯU TRỮ</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="manufacturer">Vị trí hoạt động</label>
+                            <input type="text" id="manufacturer" name="manufacturer" value="ICU" required>
+                        </div>
+                    </div>
+                    <div class="form-group-title">
+                        Lịch sử sử dụng
+                    </div>
+                    <div class="form-group">
+                        <table id="dataTable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ngày nhập kho</th>
+                                    <th>Ngày xuất kho</th>
+                                    <th>Vị trí sau khi xuất kho</th>
+                                    <th>Tình trạng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="facility">1</td>
+                                    <td id="facility"> 12/3/2024 </td>
+                                    <td id="facility"> 2/3/2025 </td>
+                                    <td id="facility"> ICU</td>
+                                    <td id="facility"> hoạt động </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <label for="description">Mô tả:</label><br><br>
+                    <textarea id="description" name="description" rows="4" cols="50" required> Đang sử dụng tốt, hoạt động ở phòng Hồi sức, chưa bảo trì lần nào
+                    </textarea><br><br>
+                    <button class="submit-button">Cập nhật</button>
+                    <button class="cancel-button" onclick="document.getElementById('deviceDetailModal').style.display='none'">Thoát</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!--modal thêm thiết bị -->
+        <div id="deviceAddModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="document.getElementById('deviceAddModal').style.display='none'">&times;</span>
+                    <h3 class="deviceAddModal">Thêm thiết bị</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group-title">
+                            <div>
+                                <i class="fa-solid fa-info-circle" style="margin-right: 0.5rem;"></i>
+                                Thông tin chung
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="deviceName">Tên thiết bị:</label>
+                                <input type="text" id="deviceName" name="deviceName" required>
+                            </div>
+                            
+                            <div>
+                                <label for="manufacturer">Tên nhà sản xuất:</label>
+                            <input type="text" id="manufacturer" name="manufacturer" required>
+                            </div>
+                            
+                            <div>
+                                <label for="manufacturer">Mã serries:</label>
+                                <input type="text" id="deviceCode" name="manufacturer" required>
+                            </div>
+                            <div>
+                                <label for="manufacturer">Hãng:</label>
+                                <input type="text" placeholder="Điền tên hãng...">
+                            </div>
+                        </div><br>
+                        <div class="form-group-title">
+                            <div>
+                                <i class="fa-solid fa-warehouse" style="margin-right: 0.5rem;"></i> 
+                                Thông tin kho
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="deviceCategory">Số lượng nhập vào kho:</label>
+                                <input type="number" min="0" step="1" required style="width: 5rem;">
+                            </div>
+                            <div>
+                                <label for="deviceCategory">Đơn vị tính:</label>
+                                <select id="deviceCategory" name="deviceCategory" required>
+                                    <option value="">Chọn phân loại</option>
+                                    <option value="type1">Cái</option>
+                                    <option value="type2">Máy</option>
+                                    <option value="type3">Hộp</option>
+                                    <option value="type3">Thùng</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="deviceType">Giá sản phẩm/đơn vị:</label>
+                                <input type="text" id="money" name="money" oninput="formatMoney(this)" required>
+                            </div>
+                            <div>
+                                <label for="maintenancePeriod">Ngày nhập về:</label>
+                                <input type="number" id="maintenancePeriod" name="maintenancePeriod" min="1" required>
+                            </div>
+                        </div><br>
+                        <div class="form-group-title">
+                            <div>
+                                <i class="fa-solid fa-clipboard-list" style="margin-right: 0.5rem;"></i> Thông tin sử dụng
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="manufacturer">Khoa/Phòng tiếp nhận:</label>
+                                <select id="deviceCategory">
+                                    <option value="PhongKham">Phòng khám</option>
+                                    <option value="KhoaCapCuu">Khoa Cấp cứu</option>
+                                    <option value="KhoaXetNghiem">Khoa xét nghiệm</option>
+                                    <option value="PhongMo">Phòng Mổ</option>
+                                    <option value="HoiSucTichCuc">Hồi sức tích cực</option>
+                                    <option value="KhoaNhi">Khoa nhi</option>
+                                    <option value="KhoaNoi">Khoa nội</option>
+                                    <option value="KhoaChanDoanHinhAnh">Khoa chẩn đoán hình ảnh</option>
+                                    <option value="KhoaKiemSoatNhienKhuan">Khoa kiểm soát nhiễm khuẩn</option>
+                                    <option value="KhoaDuoc">Khoa Dược</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="manufacturer"> Tình trạng lúc nhập về</label>
+                                <select id="deviceCategory">
+                                    <option value="MUA MỚI">Mua Mới</option>
+                                    <option value="HOẠT ĐỘNG">Hoạt động</option>
+                                    <option value="BẢO TRÌ">Bảo trì</option>
+                                    <option value="SỬA CHỮA">Sửa chữa</option>
+                                    <option value="DỪNG SỬ DỤNG - THANH LÝ">Dừng sử dụng - Thanh lý</option>
+                                </select>
+                            </div>
+                        </div> <br>
+                        <div class="form-group-title">
+                            <div>
+                                <i class="fa-solid fa-wrench" style="margin-right: 0.5rem;"></i> 
+                                Thông tin bảo trì
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="manufacturer">Thời hạn bảo trì:</label>
+                                <input type="number" min="0" step="1" placeholder="Tháng bảo trì / lần" required >
+                            </div>
+                            <div>
+                                <label for="manufacturer">Thời hạn bảo trì tính từ ngày:</label>
+                                <input type="date">
+                            </div>
+                        </div><br>
+                        
+                        <div class="form-group-title">
+                            <div>
+                                <i class="fa-solid fa-paperclip" style="margin-right: 0.5rem;" ></i>
+                                Các loại hợp đồng
+                            </div>
+                        </div>
+     
+                        <div class="form-group">
+                            <label for="fileInput" class="file-label">Chọn tệp đính kèm:</label>
+                            <input type="file" id="fileInput" name="files[]" class="file-input" multiple onchange="displayFileNames()">
+                        </div> <br>
+    
+                        <div class="form-group">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <label for="description" style="width: 5rem;">Mô tả:</label>
+                                <textarea id="description" name="description" cols="50" style="width: auto;" required></textarea>
+                            </div><br>
+                        </div> <br>
+                        <button class="submit-button">Thêm thiết bị</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
 
-        <!--<script>
-            function confirm_detele(id) {
-                Id = "" + id;
-                var subScene = document.getElementsByClassName("delete-form");
-                for (let i = 0; i < @Model.ItemCount; i++) {
-                    subScene[i].style.display = "none";
-                    temp = subScene[i].id;
-                    if (temp == Id) {
-                        subScene[i].style.display = "block";
-                    }
-                }
-            }
-            function confirm_delete_disabled() {
-                var subScene = document.getElementsByClassName("delete-form");
-                for (let i = 0; i < subScene.length; i++) {
-                    subScene[i].style.display = "none";
-                }
-            }
-        </script> -->
         <script>
+            //Xóa thiết bị - ModalConfirm
             document.querySelectorAll("#deleteBtn").forEach(function(btn) {
                 btn.addEventListener("click", function () {
                     document.getElementById("confirmModal").style.display = "flex";
@@ -169,6 +372,75 @@
                     document.getElementById("confirmModal").style.display = "none";
                 });
             });
+
+            // Tìm kiếm theo tên thiết bị trong bảng thống kê
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+          const filter = this.value.toUpperCase();
+          const rows = document.querySelectorAll("#dataTable tbody tr");
+      
+          rows.forEach(row => {
+            const cell = row.querySelector("td");
+            if (cell && cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              row.style.display = "";
+            } else {
+              row.style.display = "none";
+            }
+          });
+        });
+
+            //filter lọc "Trang thái hoạt động"
+            document.getElementById("statusFilter").addEventListener("change", function() {
+            var selectedStatus = this.value.toUpperCase();
+            var rows = document.querySelectorAll("#dataTable tbody tr"); 
+        
+            rows.forEach(row => {
+                var statusCell = row.querySelector("td:nth-child(5)").textContent.toUpperCase(); 
+                
+                if (selectedStatus === "" || statusCell.indexOf(selectedStatus) > -1) {
+                    row.style.display = ""; 
+                } else {
+                    row.style.display = "none"; 
+                }
+            });
+        });
+
+            //Modal chi tiết thiết bị 
+            document.querySelectorAll("#dataTable tbody tr").forEach(function(row) {
+                row.querySelector("td:nth-child(6) button").addEventListener("click", function() {
+                    // Hiển thị modal
+                    document.getElementById("deviceDetailModal").style.display = "flex";
+                });
+            });
+            document.querySelector(".close").addEventListener("click", function() {
+                 document.getElementById("deviceDetailModal").style.display = "none";
+            });
+            // Định dạng tiền 
+            function formatMoney(input) {
+                let value = input.value.replace(/\./g, '');
+                
+                if (isNaN(value)) {
+                    input.value = '';
+                    return;
+                }
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+            //đính kèm file
+            function displayFileName() {
+                var fileInput = document.getElementById('fileInput');
+                var fileName = fileInput.files[0].name;
+            }         
+        </script>
+
+        <script>
+            window.onclick = function(event) {
+                // Kiểm tra nếu người dùng bấm vào vùng ngoài modal (tức là phần nền mờ)
+                if (event.target === document.getElementById('confirmModal') || 
+                    event.target === document.getElementById('deviceAddModal') ||
+                    event.target === document.getElementById('deviceDetailModal')
+                ) {
+                    event.target.style.display = "none";
+                }
+                }
         </script>
     </div>
 </body>

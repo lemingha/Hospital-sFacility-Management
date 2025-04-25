@@ -108,7 +108,7 @@
                                     Chi phí mua sắm
                                     <div class="btn-cards-group-action">
                                         <button onclick="document.getElementById('shoppingDetail').style.display='flex'">Xem chi tiết</button>
-                                        <button> Thêm thiết bị</button>
+                                        <button onclick="document.getElementById('shoppingForm').style.display='flex'"> Thêm đơn mua thiết bị</button>
                                   </div>
                                 </h2>
                             </div>
@@ -288,6 +288,40 @@
                                     <td>Nguyễn Trường An</td>
                                 </tbody>
                             </table>
+                            </div>
+                        </div>
+
+                        <!--shoppingform modal-->
+                        <div id="shoppingForm" class="modal">
+                            <div class="modal-content">
+                                <span class="close" onclick="document.getElementById('shoppingForm').style.display='none'">&times;</span>
+                                <h3>Hóa đơn mua thiết bị</h3>
+                                <form>
+                                    <div class="input-field">
+                                        <label for="device-name">Tên thiết bị:</label>
+                                        <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
+                                    </div><br>
+            
+                                    <div class="input-field">
+                                        <label for="dvt">Đơn vị tính:</label>
+                                        <select name="dvt">
+                                            <option value="1">Cái</option>
+                                            <option value="2">Chiếc</option>
+                                            <option value="3">Máy</option>
+                                        </select>
+                                    </div><br>
+
+                                    <div class="input-field">
+                                        <label for="quantity">Số lượng:</label>
+                                        <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
+                                    </div><br>
+            
+                                    <div class="input-field">
+                                        <label for="priceUnit"> Đơn giá:</label>
+                                        <input type="number" id="price" placeholder="Nhập giá tiền" step="0.01" min="0" required>
+                                    </div><br>
+                                    <button type="submit">Gửi yêu cầu</button>
+                                </form>
                             </div>
                         </div>
                     </div>
