@@ -113,12 +113,16 @@
                 <div class="container">
                     <div class="function-card">
                         <h3>
-                            <i class="fa-solid fa-paper-plane" style="margin-right: 0.3rem;"></i>
+                            <i class="fa-solid fa-paper-plane" style="margin-right: 0.5rem;"></i>
                             Yêu cầu xuất nhập kho
                         </h3>
                     <ul>
-                        <li><button onclick="document.getElementById('importModal').style.display='flex'">Ghi nhận thiết bị nhập kho</button></li>
-                        <li><button onclick="document.getElementById('exportModal').style.display='flex'" style="margin-bottom: 0rem !important;">Ghi nhận thiết bị xuất kho</button></li>
+                        <li><button onclick="document.getElementById('importModal').style.display='flex'">
+                            <i class="fa-solid fa-box-open" style="margin-right:0.2rem ;"></i>
+                            Ghi nhận thiết bị nhập kho</button></li>
+                        <li><button onclick="document.getElementById('exportModal').style.display='flex'" style="margin-bottom: 0rem !important;">
+                            <i class="fa-solid fa-truck-moving" style="margin-right:0.2rem;"></i>
+                            Ghi nhận thiết bị xuất kho</button></li>
                     </ul>
                     </div>
 
@@ -128,33 +132,66 @@
                             <span class="close" onclick="document.getElementById('importModal').style.display='none'">&times;</span>
                             <h3>Ghi nhận thiết bị nhập kho</h3>
                             <form>
-                            <div class="input-field">
-                                <label for="import-device-name">Tên thiết bị:</label>
-                                <input type="text" id="import-device-name" placeholder="Nhập tên thiết bị">
+                            <div class="form-group">
+                                <div>
+                                    <label for="import-device-name">Tên thiết bị:</label>
+                                    <input type="text" id="import-device-name" placeholder="Nhập tên thiết bị"> 
+                                </div>
                             </div><br>
-                            <div class="input-field">
-                                <label for="import-device-id">Mã thiết bị:</label>
-                                <input type="text" id="import-device-id" placeholder="Nhập mã thiết bị">
+                            <div class="form-group-title">
+                                Mã seri thiết bị nhập kho
+                            </div>
+                            <div class="form-group">
+                                <table id="deviceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Mã Series</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><input type="text" name="series[]" required></td>
+                                            <td>
+                                                <button type="button" class="removeDeviceButton">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" id="addSeribtn">
+                                    <i class="fa-solid fa-circle-plus" style="margin-right: 0.2rem;"></i>
+                                    Thêm series</button>
                             </div><br>
-                            <div class="input-field">
-                                <label for="import-quantity">Số lượng nhập kho:</label>
-                                <input type="number" id="import-quantity" placeholder="Nhập số lượng">
+                            <div class="form-group">
+                                <div>
+                                    <label for="import-warehouse">Kho nhập:</label>
+                                    <select id="import-warehouse">
+                                        <option value="warehouse1">Kho 1</option>
+                                        <option value="warehouse2">Kho 2</option>
+                                        <option value="warehouse3">Kho 3</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="import-date">Ngày nhập kho:</label>
+                                    <input type="date" id="import-date">
+                                </div>
                             </div><br>
-                            <div class="input-field">
-                                <label for="import-warehouse">Kho nhập:</label>
-                                <select id="import-warehouse">
-                                <option value="warehouse1">Kho 1</option>
-                                <option value="warehouse2">Kho 2</option>
-                                <option value="warehouse3">Kho 3</option>
-                                </select>
-                            </div><br>
-                            <div class="input-field">
-                                <label for="import-date">Ngày nhập kho:</label>
-                                <input type="date" id="import-date">
-                            </div><br>
-                            <div class="input-field">
-                                <label for="import-receiver">Người nhận:</label>
-                                <input type="text" id="import-receiver" placeholder="Nhập người nhận thiết bị">
+                            <div class="form-group">
+                                <div>
+                                    <label for="import-receiver">Người tiếp nhận:</label>
+                                    <input type="text" id="import-receiver" placeholder="Nhập người nhận">
+                                </div>
+                                <div>
+                                    <label for="import-receiver">SĐT:</label>
+                                    <input type="tel" id="phone" name="phone" 
+                                        pattern="0[0-9]{9}" 
+                                        placeholder="Nhập số điện thoại" 
+                                        required>
+                                </div>
                             </div><br>
                             <button id="popup-button-reschedule" type="submit">Ghi nhận</button>
                             </form>
@@ -167,19 +204,19 @@
                         <span class="close" onclick="document.getElementById('exportModal').style.display='none'">&times;</span>
                         <h3 >Ghi nhận thiết bị xuất kho</h3>
                         <form>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-device-name">Tên thiết bị:</label>
                             <input type="text" id="export-device-name" placeholder="Nhập tên thiết bị">
                         </div><br>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-device-id">Mã thiết bị:</label>
                             <input type="text" id="export-device-id" placeholder="Nhập mã thiết bị">
                         </div><br>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-quantity">Số lượng xuất kho:</label>
                             <input type="number" id="export-quantity" placeholder="Nhập số lượng">
                         </div><br>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-warehouse">Kho xuất:</label>
                             <select id="export-warehouse">
                             <option value="warehouse1">Kho 1</option>
@@ -187,11 +224,11 @@
                             <option value="warehouse3">Kho 3</option>
                             </select>
                         </div><br>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-date">Ngày xuất kho:</label>
                             <input type="date" id="export-date">
                         </div><br>
-                        <div class="input-field">
+                        <div class="form-group">
                             <label for="export-receiver">Người nhận:</label>
                             <input type="text" id="export-receiver" placeholder="Nhập người nhận thiết bị">
                         </div><br>
@@ -269,12 +306,12 @@
                             <h3>Tạo yêu cầu chuyển thiết bị</h3>
         
                             <form>
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="device-name">Tên thiết bị:</label>
                                     <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="source-warehouse">Kho nguồn:</label>
                                     <select id="source-warehouse">
                                         <option value="warehouse1">Kho 1</option>
@@ -283,7 +320,7 @@
                                     </select>
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="destination-warehouse">Kho đích:</label>
                                     <select id="destination-warehouse">
                                         <option value="warehouse1">Kho 1</option>
@@ -292,12 +329,12 @@
                                     </select>
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="quantity">Số lượng:</label>
                                     <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="transfer-date">Ngày điều chuyển:</label>
                                     <input type="date" id="transfer-date">
                                 </div><br>
@@ -313,12 +350,12 @@
                             <h3>Tạo yêu cầu thu hồi thiết bị</h3>
         
                             <form>
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="device-name">Tên thiết bị:</label>
                                     <input type="text" id="device-name" placeholder="Nhập tên thiết bị">
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="source-warehouse">Vị trí hiện tại:</label>
                                     <select id="source-warehouse">
                                         <option value="warehouse1">Kho 1</option>
@@ -327,7 +364,7 @@
                                     </select>
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="destination-warehouse">Thu hồi về:</label>
                                     <select id="destination-warehouse">
                                         <option value="warehouse1">Kho 1</option>
@@ -336,12 +373,12 @@
                                     </select>
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="quantity">Số lượng:</label>
                                     <input type="number" id="quantity" placeholder="Nhập số lượng thiết bị">
                                 </div><br>
         
-                                <div class="input-field">
+                                <div class="form-group">
                                     <label for="transfer-date">Ngày Thu hồi:</label>
                                     <input type="date" id="transfer-date">
                                 </div><br>
@@ -445,6 +482,5 @@
             });
             });
     </script>
-
     
 </body>

@@ -63,7 +63,7 @@
 
         <div class="maintain-data">
             <section class="maintain-title" id="thongtin">
-                1. Thông tin thiết bị sửa chữa
+                1. Danh sách thiết bị sửa chữa
             </section>
             <div class="maintain-table">
                 <div class="surgery-table">
@@ -138,30 +138,40 @@
             
                 <form onsubmit="handleSubmit(event)">
                     <div>
-                        <label for="device">Chọn thiết bị:</label>
-                        <select id="device" name="device" style="margin-right: 1rem;" required>
-                            <option value="">-- Chọn thiết bị --</option>
-                            <option value="maytho">Máy thở PHILIP</option>
-                            <option value="doppler">Máy siêu âm Doppler</option>
-                        </select>
+                        <label for="device">Tên thiết bị:</label>
+                        <input type="text" placeholder="Nhập tên thiết bị cần sửa" style="margin-right: 1rem ;">
 
                         <label for="priority">Mức độ ưu tiên:</label>
                         <select id="priority" name="priority" required>
                             <option value="">-- Chọn mức ưu tiên --</option>
-                            <option value="cao">Cao</option>
-                            <option value="trungbinh">Trung bình</option>
-                            <option value="thap">Thấp</option>
+                            <option value="CAO">Cao</option>
+                            <option value="TRUNG BÌNH">Trung bình</option>
+                            <option value="THẤP">Thấp</option>
                         </select>
+                    </div> 
+                    <div>
+                        <label for="repairNumber">Số lượng thiết bị cần sửa:</label>
+                        <input type="number" min="0" step="1" style="margin-right: 1rem ;">
+
+                        <label for="repairNumber">Đơn giá trên đơn vị sửa:</label>
+                        <input type="text" id="money" name="money" oninput="formatMoney(this)" required>
                     </div>
-            
-                  <!-- Mô tả lỗi -->
-                  <label for="description">Mô tả lỗi:</label>
-                  <textarea id="description" name="description" rows="4" placeholder="Nhập mô tả lỗi..." required></textarea>
-            
-                  <!-- Ảnh đính kèm -->
-                  <label for="image">Đính kèm hình ảnh (nếu có):</label>
-                  <input type="file" id="image" name="image" accept="image/*">
-            
+                    <div style="display: flex; gap: 0.5rem;">
+                        <!-- Mô tả lỗi -->
+                        <label for="description" style="width: 5rem;">Mô tả lỗi:</label>
+                        <textarea id="description" name="description" placeholder="Nhập mô tả lỗi..." required></textarea>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <label for="image" style="width: 14rem;">Đính kèm hình ảnh (nếu có):</label>
+                        <input style="width: 27rem;" type="file" id="image" name="image" accept="image/*">
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <label for="kinked_file">Hóa đơn sửa chữa (nếu có):</label>
+                        <input type="file" id="fileInput" name="files[]" class="file-input" multiple onchange="displayFileNames()">
+                    </div>
+                    <div>
+
+                    </div>
                   <!-- Gửi yêu cầu -->
                   <button type="submit">Gửi yêu cầu</button>
                 </form>
@@ -197,6 +207,9 @@
                       <div class="description">Linh kiện đang được vận chuyển từ nhà cung cấp.</div>
                     </div>
                   </div>
+                  <div class="status-edit" style="display: flex; justify-content: flex-start; align-items: flex-start;">
+                    <button class="repair-btn" onclick="document.getElementById('repairStatusModal').style.display='flex'"> Cập nhật trạng thái </button>
+                  </div>
                 </div>
             
                 <!-- Thiết bị 2 -->
@@ -217,16 +230,47 @@
                       <div class="description">Thay dây cảm biến và hiệu chuẩn lại thiết bị.</div>
                     </div>
                   </div>
+                  <div class="status-edit" style="display: flex; justify-content: flex-start; align-items: flex-start;">
+                    <button class="repair-btn" onclick="document.getElementById('repairStatusModal').style.display='flex'"> Cập nhật trạng thái </button>
+                  </div>
                 </div>
             
               </div>
-            
-              <script>
-                function toggleTimeline(card) {
-                  const timeline = card.querySelector('.timeline');
-                  timeline.style.display = timeline.style.display === 'block' ? 'none' : 'block';
-                }
-              </script>
+
+        </div>
+
+        <!--modal cập nhật trạng thái -->
+        <div id="repairStatusModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="document.getElementById('repairStatusModal').style.display='none'">&times;</span>
+                    <h3 class="deviceAddModal">Thêm thiết bị</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <div>
+                                <label for="description">Trạng thái sửa chữa:</label>
+                                <input type="text" style="width: 22rem ;">
+                            </div>
+                        </div> <br>
+                        <div class="form-group">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <label for="description" style="width: 5rem;">Mô tả:</label>
+                                <textarea id="description" name="description" cols="50" style="width: auto;" required></textarea>
+                            </div><br>
+                        </div> <br>
+                        <div class="form-group">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <label for="description">Thời gian cập nhật:</label>
+                                <input type="datetime-local">
+                            </div>
+                        </div> <br>
+                        <button class="submit-button">Cập nhật trạng thái</button>
+                    </form>
+                </div>
+                
+            </div>
         </div>
     </div>
     
@@ -262,5 +306,39 @@
                 }
             });
         });
+    </script>
+    <script>
+        function formatMoney(input) {
+                let value = input.value.replace(/\./g, '');
+                
+                if (isNaN(value)) {
+                    input.value = '';
+                    return;
+                }
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+        function displayFileName() {
+                var fileInput = document.getElementById('fileInput');
+                var fileName = fileInput.files[0].name;
+            }       
+        function toggleTimeline(card) {
+                const timeline = card.querySelector('.timeline');
+                const repairBtn = card.querySelector('.repair-btn');
+                
+                const isTimelineVisible = timeline.style.display === 'block';
+                
+                // Hiển thị/ẩn timeline và repair-btn đồng thời
+                timeline.style.display = isTimelineVisible ? 'none' : 'block';
+                repairBtn.style.display = isTimelineVisible ? 'none' : 'inline-block';
+            }
+    </script>
+    <script>
+        window.onclick = function(event) {
+            // Kiểm tra nếu người dùng bấm vào vùng ngoài modal (tức là phần nền mờ)
+            if (event.target === document.getElementById('repairStatusModal')
+            ) {
+                event.target.style.display = "none";
+            }
+            }
     </script>
 </body>

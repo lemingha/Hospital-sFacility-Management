@@ -539,6 +539,14 @@ input, textarea {
     border-width: 1px;
     width: auto;
 }
+
+input{
+  text-transform: uppercase;
+}
+
+textarea{
+  width:36rem
+}
 select {
     font-family: Lato;
     font-size: 1rem;
@@ -942,7 +950,7 @@ select {
     background-color: #f7f9fb;
     border: 1px solid #ccc;
     padding: 2rem;
-    max-width: 44rem;
+    max-width: fit-content;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   }
@@ -1317,6 +1325,7 @@ select {
     position: absolute; /* Đặt nút vào vị trí tuyệt đối */
     bottom: 0.7rem; /* Lùi nút xuống dưới cùng */
     right: 1rem; /* Căn nút về góc phải */
+    cursor: pointer;
   }
   
   .edit-btn:hover {
@@ -1341,3 +1350,51 @@ select {
     background-color:#007B9E;
     transform: scale(1.05);
   }
+.repair-btn{
+  display:none ;
+  font-size: 1.2rem;
+  font-family: Lato;
+  font-weight: 700;
+  padding: 0.5rem; 
+  margin-top: 0.5rem;
+  color: white;
+  background-color: #118AB2;
+  border-radius: 8px;
+  border-width: 0px;
+  cursor: pointer;
+}
+.repair-btn:hover{
+  background-color:#0d3b66 ;
+  transform: scale(1.05);
+}
+#addSeribtn{
+  height: max-content;
+  font-size: 1.2rem;
+  font-family: Lato;
+  font-weight: 700;
+  padding: 0.5rem; 
+  margin-top: 0.2rem;
+  color: white;
+  background-color: #118AB2;
+  border-radius: 8px;
+  border-width: 0px;
+  cursor: pointer;
+}
+#addSeribtn:hover{
+  background-color:#0d3b66 ;
+  transform: scale(1.05);
+}
+.removeDeviceButton{
+  display: flex;
+  border-width: 0px;
+  font-size: 1rem;
+  font-family: Lato;
+  font-weight: 600;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+}
+.removeDeviceButton :hover{
+  transform: scale(1.05);
+  color:#0069cb;
+}
