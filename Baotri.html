@@ -136,39 +136,40 @@
             </section>
 
             <div class="repair-request-form" style="max-width: none;" onsubmit="handleSubmit(event)">
-                <div class="planer-form">
-                    <label>Thiết bị:</label>
-                    <input type="text" placeholder="Nhập tên thiết bị trong danh sách trên" style="width: 18rem; margin-right: 1rem;" />
-                    
-                    <label>Mã series (mã thiết bị)</label>
-                    <input type="text" style="text-transform: uppercase;"/>
-
-                    <label>Ngày bảo trì:</label>
-                    <input type="date" />
-                </div> <br>
-                <div class="planer-form">
-                    <label>Người phụ trách giao nhận thiết bị:</label>
-                    <input type="text" style="margin-right: 1rem;" />
-                    
-                    <label>
+                <form action="">
+                    <div class="planer-form">
+                        <label>Thiết bị:</label>
+                        <input type="text" placeholder="Nhập tên thiết bị trong danh sách trên" style="width: 18rem; margin-right: 1rem;" />
                         
-                        <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
-                        Số điện thoại liên hệ:</label>
-                    <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
-                </div><br>
-    
-                <div class="planer-form">
-                    <label>Người phụ trách bảo trì:</label>
-                    <input type="text" style="margin-right: 1rem;"  />
-                    
-                    <label>
-                        <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
-                        Số điện thoại liên hệ:</label>
-                    <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
+                        <label>Mã series (mã thiết bị)</label>
+                        <input type="text" style="text-transform: uppercase;"/>
+
+                        <label>Ngày bảo trì:</label>
+                        <input type="date" />
                     </div> <br>
-                <button >Lưu</button>
-                <button >Đặt lại</button>
-            </form>
+                    <div class="planer-form">
+                        <label>Người phụ trách giao nhận thiết bị:</label>
+                        <input type="text" style="margin-right: 1rem;" />
+                        
+                        <label>
+                            
+                            <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
+                            Số điện thoại liên hệ:</label>
+                        <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
+                    </div><br>
+        
+                    <div class="planer-form">
+                        <label>Người phụ trách bảo trì:</label>
+                        <input type="text" style="margin-right: 1rem;"  />
+                        
+                        <label>
+                            <i class="fa-solid fa-phone" style="margin-right: 0.25rem;"></i>
+                            Số điện thoại liên hệ:</label>
+                        <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="0123456789" />
+                        </div> <br>
+                    <button >Lưu</button>
+                    <button >Đặt lại</button>
+                </form>
             </div>
         </div>
 
